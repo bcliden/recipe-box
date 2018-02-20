@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.render("partials/header");
-})
+});
 
 const port = process.env.port || 7575;
 app.listen(port, () => {

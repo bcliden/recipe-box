@@ -1,6 +1,77 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
 
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 3rem;
+    font-size: 1.1rem;
+}
+
+.topbar {
+    height: auto;
+    padding: 10px;
+}
+
+.topbar .container {
+    max-width: 950px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.topbar h1 {
+    margin: 0;
+    padding-left: 5px;
+    position: relative;
+    top: -2px;
+}
+
+.topbar em {
+    font-size: .9rem;
+    margin-right: -6px;
+}
+
+.menu-button {
+    position: absolute;
+    display: none;
+    top: 10px;
+    right: 19px;
+    /* margin: 1rem; */
+    padding: 10px;
+    background: cornflowerblue;
+    transform: scaleX(1.5);
+    text-decoration: none;
+}
+
+.menu {
+    /* display: none; */
+    margin-top: 5px;
+    max-height: 0;
+    overflow: hidden;
+    text-align: left;
+    width: 100%;
+    transition: max-height .25s linear;
+}
+
+.menu-visible {
+    max-height: 500px;
+    display: inline-block;
+}
+
+
+
+.menu a {
+    display: block;
+    padding: 10px;
+    color: white;
+    background: cornflowerblue;
+}
+
+@media screen and (max-width: 700px) {
+    .menu-button {
+        display: inline-block;
+    }
 }
