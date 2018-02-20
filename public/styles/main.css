@@ -3,7 +3,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 body {
@@ -24,9 +25,11 @@ body {
 
 .topbar h1 {
     margin: 0;
-    padding-left: 5px;
+    /* padding-left: 10px; */
     position: relative;
-    top: -2px;
+    border-bottom: 3px solid darkred ;    
+    padding-bottom: 10px;
+    letter-spacing: 0rem;
 }
 
 .topbar em {
@@ -36,23 +39,25 @@ body {
 
 .menu-button {
     position: absolute;
-    display: none;
+    display: inline-block;
     top: 10px;
-    right: 19px;
-    /* margin: 1rem; */
+    right: 1rem;
     padding: 10px;
     background: cornflowerblue;
-    transform: scaleX(1.5);
+    -webkit-transform: scaleX(1.4);
+        -ms-transform: scaleX(1.4);
+            transform: scaleX(1.4);
     text-decoration: none;
 }
 
 .menu {
-    /* display: none; */
     margin-top: 5px;
     max-height: 0;
     overflow: hidden;
     text-align: left;
     width: 100%;
+    -webkit-transition: max-height .25s linear;
+    -o-transition: max-height .25s linear;
     transition: max-height .25s linear;
 }
 
@@ -61,17 +66,61 @@ body {
     display: inline-block;
 }
 
-
-
 .menu a {
     display: block;
-    padding: 10px;
+    padding: 20px;
     color: white;
     background: cornflowerblue;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-top: .5rem;
 }
 
-@media screen and (max-width: 700px) {
+.menu a:first-child {
+    margin-top: .25rem;
+}
+
+@media screen and (min-width: 700px) {
+    .topbar {
+        border-bottom: 3px solid darkred;
+    }
+    .container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+    }
+    .topbar h1 {
+        border: none;
+        position: static;
+        padding-bottom: 0;
+	padding-left: 10px;
+    }
     .menu-button {
-        display: inline-block;
+        display: none;
+    }
+    .menu {
+        width: inherit;
+        max-height: inherit;
+        margin-top: 0;
+
+        display: -webkit-box;
+
+        display: -ms-flexbox;
+
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+    .menu a {
+        padding: 10px 40px;
+        margin: 0px 10px !important;
     }
 }

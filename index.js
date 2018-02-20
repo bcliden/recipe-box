@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    res.render("partials/header");
+    res.render("show");
 });
 
 const port = process.env.port || 7575;
