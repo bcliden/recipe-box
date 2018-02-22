@@ -1,4 +1,6 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans);
+@import url(//fonts.googleapis.com/css?family=Montserrat);
+
+/* TOP LEVEL STYLES */
 
 html, body {
     margin: 0;
@@ -8,24 +10,33 @@ html, body {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
 }
+
+/* HEADER STYLES */
 
 .topbar {
     height: auto;
     padding: 10px;
 }
 
-.topbar .container {
-    max-width: 950px;
+.topbar .container-topbar {
     text-align: left;
-    margin: 0 auto;
+}
+
+.container {
+    max-width: 950px;  
+    margin: 0 auto;  
+}
+
+.container-body {
+    padding: 0 10px;      
 }
 
 .topbar h1 {
     margin: 0;
-    /* padding-left: 10px; */
+    padding-left: 10px;
     position: relative;
     border-bottom: 3px solid darkred ;    
     padding-bottom: 10px;
@@ -48,6 +59,7 @@ body {
         -ms-transform: scaleX(1.4);
             transform: scaleX(1.4);
     text-decoration: none;
+    border-radius: 5px;
 }
 
 .menu {
@@ -85,7 +97,7 @@ body {
     .topbar {
         border-bottom: 3px solid darkred;
     }
-    .container {
+    .container-topbar {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -93,11 +105,14 @@ body {
             -ms-flex-pack: justify;
                 justify-content: space-between;
     }
+    .container-body {
+        padding: 0 20px;
+    }
     .topbar h1 {
         border: none;
         position: static;
         padding-bottom: 0;
-	padding-left: 10px;
+	    /* padding-left: 10px; */
     }
     .menu-button {
         display: none;
@@ -123,4 +138,17 @@ body {
         padding: 10px 40px;
         margin: 0px 10px !important;
     }
+}
+
+
+/*  SHOW ROUTE STYLES */
+
+.featured {
+    margin: 5%;
+    margin-top: 2.5%;
+    padding: 5%;
+    /* height: 400px; */
+    background: #f5f5f5;
+    border-radius: 20px;
+    font-size: 1.2rem;
 }
