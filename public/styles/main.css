@@ -8,7 +8,8 @@
     --topbar-border-color: #B71C1C;
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
-    --featured-bg-color: #F5F5F5;
+    --featured-bg-color: #EEEEEE;
+    --card-bg-color: #F5F5F5;,
 }
 
 html {
@@ -162,23 +163,34 @@ body {
 
 /*  SHOW ROUTE STYLES */
 
-.featured {
-    margin: 0;
+.card {
+    margin-bottom: 20px;
     padding: 5%;
-    /* height: 400px; */
-    background: var(--featured-bg-color);
+    background: var(--card-bg-color);
     border-radius: 5px;
-    font-size: 1.2rem;
 
-    box-shadow: 0rem 1em 1em -1em #9e9e9e;
+    box-shadow: 0rem 1em 1em -1em #9e9e9e;    
+}
+
+.featured {
+    background: var(--featured-bg-color);
+    font-size: 1.2rem;
 }
 
 @media screen and (min-width: 700px) {
-    .featured {
+    /* .featured {
         margin: 5%;
         margin-top: 2.5%;
+    } */
+
+    .card {
+        margin-top: 2.5%;
+        margin: 5%;
     }
 }
+
+
+
 
 /*  FOOTER STYLES */
 
