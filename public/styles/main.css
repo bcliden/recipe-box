@@ -6,7 +6,7 @@
     --main-font-color: #212121;
     --main-bg-color: #FFFFFF;
     --topbar-border-color: #B71C1C;
-    --btn-pad-color: #039BE5;
+    --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
     --featured-bg-color: #F5F5F5;
 }
@@ -153,17 +153,38 @@ body {
         padding: 10px 40px;
         margin: 0px 10px !important;
     }
+    .container-body {
+        padding: 0;
+        width: 95%;
+    }
 }
 
 
 /*  SHOW ROUTE STYLES */
 
 .featured {
-    margin: 5%;
-    margin-top: 2.5%;
+    margin: 0;
     padding: 5%;
     /* height: 400px; */
     background: var(--featured-bg-color);
-    border-radius: 20px;
+    border-radius: 5px;
     font-size: 1.2rem;
+
+    box-shadow: 0rem 1em 1em -1em #9e9e9e;
+}
+
+@media screen and (min-width: 700px) {
+    .featured {
+        margin: 5%;
+        margin-top: 2.5%;
+    }
+}
+
+/*  FOOTER STYLES */
+
+footer {
+    background: var(--featured-bg-color);
+    font-size: .9rem;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
 }
