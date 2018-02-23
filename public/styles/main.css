@@ -8,10 +8,14 @@
     --topbar-border-color: #B71C1C;
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
-    --featured-bg-color: #EEEEEE;
+    --featured-bg-color: #FFF9C4;
+    --featured-card-title-color: #FFEB3B;
     --card-bg-color: #F5F5F5;
     --card-shadow-color: #9E9E9E;
     --card-title-color: #9E9E9E;
+    --card-li-color: #9E9E9E;
+    --card-li-odd-color: #EEEEEE;
+    --footer-bg-color: #EEEEEE;
 }
 
 html {
@@ -193,6 +197,32 @@ body {
     font-size: 1.2rem;
 }
 
+.featured .card-title {
+    /* color: var(--featured-card-title-color); */
+}
+
+.list-card {
+    padding: 0;
+}
+
+.list-card li {
+    text-decoration: none;
+    list-style: none;
+
+    padding: 3%;
+    border-bottom: 1px solid #9e9e9e;
+}
+
+.list-card li:nth-child(odd) {
+    background: #EEEEEE;
+}
+
+.list-card .desc {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 @media screen and (min-width: 750px) {
     .card {
         margin-top: 2.5%;
@@ -210,7 +240,7 @@ body {
 /*  FOOTER STYLES */
 
 footer {
-    background: var(--featured-bg-color);
+    background: var(--footer-bg-color);
     font-size: .9rem;
     margin-top: 1rem;
     padding: .5rem 1rem;
