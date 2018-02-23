@@ -9,7 +9,9 @@
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
     --featured-bg-color: #EEEEEE;
-    --card-bg-color: #F5F5F5;,
+    --card-bg-color: #F5F5F5;
+    --card-shadow-color: #9E9E9E;
+    --card-title-color: #9E9E9E;
 }
 
 html {
@@ -168,8 +170,22 @@ body {
     padding: 5%;
     background: var(--card-bg-color);
     border-radius: 5px;
+    position: relative;
 
-    box-shadow: 0rem 1em 1em -1em #9e9e9e;    
+    box-shadow: 0rem 1em 1em -1em var(--card-shadow-color);    
+}
+
+.card-title {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    text-transform: lowercase;
+    font-style: italic;
+    color: var(--card-title-color);
+}
+
+.featured .card-title {
+    font-size: 1.1rem;
 }
 
 .featured {
