@@ -111,7 +111,7 @@ body {
     margin-top: .25rem;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 750px) {
     .topbar {
         border-bottom: 3px solid var(--topbar-border-color);
     }
@@ -177,8 +177,8 @@ body {
 
 .card-title {
     position: absolute;
-    top: 0;
-    right: 30px;
+    top: -10px;
+    right: 15px;
     text-transform: lowercase;
     font-style: italic;
     color: var(--card-title-color);
@@ -193,15 +193,14 @@ body {
     font-size: 1.2rem;
 }
 
-@media screen and (min-width: 700px) {
-    /* .featured {
-        margin: 5%;
-        margin-top: 2.5%;
-    } */
-
+@media screen and (min-width: 750px) {
     .card {
         margin-top: 2.5%;
         margin: 5%;
+    }
+    .card-title {
+        top: 0;
+        right: 30px;
     }
 }
 
