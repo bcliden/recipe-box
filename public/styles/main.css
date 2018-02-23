@@ -8,8 +8,8 @@
     --topbar-border-color: #B71C1C;
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
-    --featured-bg-color: #FFF9C4;
-    --featured-card-title-color: #FFEB3B;
+    --featured-bg-color: #FFF59D;
+    /* --featured-card-title-color: #FFEB3B; */
     --card-bg-color: #F5F5F5;
     --card-shadow-color: #9E9E9E;
     --card-title-color: #9E9E9E;
@@ -198,7 +198,7 @@ body {
 }
 
 .featured .card-title {
-    /* color: var(--featured-card-title-color); */
+    color: var(--featured-card-title-color, var(--card-title-color));
 }
 
 .list-card {
