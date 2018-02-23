@@ -95,16 +95,14 @@ body {
     overflow: hidden;
     text-align: left;
     width: 100%;
-    -webkit-transition: max-height .25s linear;
-    -o-transition: max-height .25s linear;
-    transition: all .25s linear;
-    /* transition: padding-bottom .1s linear; */
+    transition: max-height .25s linear, 
+                padding-bottom .125s linear;
 }
 
 .menu-visible {
     max-height: 500px;
     display: inline-block;
-    padding-bottom: 14px;
+    padding-bottom: 12px;    
 }
 
 .menu a {
@@ -224,11 +222,11 @@ body {
     list-style: none;
 
     padding: 3%;
-    border-bottom: 1px solid #9e9e9e;
+    border-bottom: 1px solid var(--card-li-color);
 }
 
 .list-card li:nth-child(odd) {
-    background: #EEEEEE;
+    background: var(--card-li-odd-color);
 }
 
 .list-card .desc {
