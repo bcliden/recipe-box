@@ -39,6 +39,14 @@ body {
     color: var(--main-font-color);
 }
 
+a.btn {
+    background: var(--btn-pad-color);
+    color: var(--btn-font-color);
+    padding: 15px 40px;
+    text-align: center;
+    box-shadow: var(--card-box-shadow);
+}
+
 /* HEADER STYLES */
 
 .topbar {
@@ -213,6 +221,10 @@ body {
     color: var(--featured-card-title-color, var(--card-title-color));
 }
 
+.featured a.btn {
+    float: right;
+}
+
 .list-card {
     padding: 0;
 }
@@ -234,6 +246,25 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.author {
+    font-style: italic;
+}
+
+/* slightly enhanced, universal clearfix hack */
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \\*/
+* html .clearfix { height: 1&#37;; }
+.clearfix { display: block; }
+/* close commented backslash hack */
 
 @media screen and (min-width: 800px) {
     .card {
