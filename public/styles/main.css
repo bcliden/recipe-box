@@ -63,6 +63,12 @@ input {
     display: block;
 }
 
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 /* HEADER STYLES */
 
 .topbar {
@@ -273,13 +279,6 @@ input {
     font-style: italic;
 }
 
-/* slightly enhanced, universal clearfix hack */
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
 @media screen and (min-width: 800px) {
     .card {
         margin-top: 2.5%;
@@ -295,6 +294,7 @@ input {
 
 .new {
     background: var(--card-li-odd-color);
+    border: #e0e0e0;
 }
 
 form input,textarea {
@@ -307,6 +307,16 @@ form [name="description"] {
     /* width: 100%; */
 }
 
+form [type="submit"] {
+    float: right;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 800px) {
+    form [type="submit"] {
+        margin-top: 20px;
+    }
+}
 /*  FOOTER STYLES */
 
 footer {

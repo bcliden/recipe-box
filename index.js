@@ -38,6 +38,7 @@ app.get('/recipes', (req, res) => {
 });
 
 app.post('/recipes', (req, res) => {
+    console.log(req.body);
     res.send('this is the post rt');
 })
 
