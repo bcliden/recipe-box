@@ -1,0 +1,12 @@
+<% include partials/header %>
+
+    <div class="featured card new">
+        <form class="clearfix" action="/recipes" method="POST">
+            <label>Title: <input type="text" name="title" placeholder=""></label>
+            <label>Author: <input type="text" name="author" placeholder=""></label>
+            <label>Description:<textarea name="description" cols="10" rows="5" placeholder=""></textarea></label>
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </div>
+
+<% include partials/footer %>

@@ -49,12 +49,24 @@ a:hover {
     text-decoration: underline;
 }
 
-a.btn {
+.btn {
     background: var(--btn-pad-color);
     color: var(--btn-font-color);
     padding: 15px 40px;
     text-align: center;
     box-shadow: var(--card-box-shadow);
+    border: none;
+    border-radius: 5px;
+}
+
+input {
+    display: block;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* HEADER STYLES */
@@ -225,6 +237,7 @@ a.btn {
 .featured {
     background: var(--featured-bg-color);
     font-size: 1.2rem;
+    border: 1px solid #FFEE58;
 }
 
 .featured .card-title {
@@ -237,6 +250,7 @@ a.btn {
 
 .list-card {
     padding: 0;
+    border: 1px solid #E0E0E0;
 }
 
 .list-card li {
@@ -251,6 +265,10 @@ a.btn {
     background: var(--card-li-odd-color);
 }
 
+.list-card li:last-child {
+    border-bottom: none;
+}
+
 .list-card .desc {
     overflow: hidden;
     white-space: nowrap;
@@ -260,21 +278,6 @@ a.btn {
 .author {
     font-style: italic;
 }
-
-/* slightly enhanced, universal clearfix hack */
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-    }
-.clearfix { display: inline-block; }
-/* start commented backslash hack \\*/
-* html .clearfix { height: 1&#37;; }
-.clearfix { display: block; }
-/* close commented backslash hack */
 
 @media screen and (min-width: 800px) {
     .card {
@@ -287,9 +290,33 @@ a.btn {
     }
 }
 
+/* NEW ROUTE STYLES */
 
+.new {
+    background: var(--card-li-odd-color);
+    border: #e0e0e0;
+}
 
+form input,textarea {
+    width: calc(100% - 6px);
+    margin-bottom: 10px;
+}
 
+form [name="description"] {
+    display: block;
+    /* width: 100%; */
+}
+
+form [type="submit"] {
+    float: right;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 800px) {
+    form [type="submit"] {
+        margin-top: 20px;
+    }
+}
 /*  FOOTER STYLES */
 
 footer {
