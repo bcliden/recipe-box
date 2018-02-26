@@ -49,12 +49,18 @@ a:hover {
     text-decoration: underline;
 }
 
-a.btn {
+.btn {
     background: var(--btn-pad-color);
     color: var(--btn-font-color);
     padding: 15px 40px;
     text-align: center;
     box-shadow: var(--card-box-shadow);
+    border: none;
+    border-radius: 5px;
+}
+
+input {
+    display: block;
 }
 
 /* HEADER STYLES */
@@ -263,18 +269,10 @@ a.btn {
 
 /* slightly enhanced, universal clearfix hack */
 .clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
+    content: "";
+    display: table;
     clear: both;
-    height: 0;
-    }
-.clearfix { display: inline-block; }
-/* start commented backslash hack \\*/
-* html .clearfix { height: 1&#37;; }
-.clearfix { display: block; }
-/* close commented backslash hack */
+  }
 
 @media screen and (min-width: 800px) {
     .card {
@@ -285,6 +283,22 @@ a.btn {
         top: 0;
         right: 30px;
     }
+}
+
+/* NEW ROUTE STYLES */
+
+.new {
+    background: var(--card-li-odd-color);
+}
+
+form input,textarea {
+    width: calc(100% - 6px);
+    margin-bottom: 10px;
+}
+
+form [name="description"] {
+    display: block;
+    /* width: 100%; */
 }
 
 
