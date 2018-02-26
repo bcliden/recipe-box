@@ -39,6 +39,16 @@ body {
     color: var(--main-font-color);
 }
 
+a {
+    color: var(--main-font-color);
+    text-decoration: none;
+}
+
+a:hover {
+    /* color: #757575; */
+    text-decoration: underline;
+}
+
 a.btn {
     background: var(--btn-pad-color);
     color: var(--btn-font-color);
