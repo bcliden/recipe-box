@@ -8,8 +8,12 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    res.render("index");
+    res.render('index');
 });
+
+app.get('/new', (req, res) => {
+    res.render('new');
+})
 
 const port = process.env.port || 7575;
 app.listen(port, () => {
