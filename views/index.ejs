@@ -3,61 +3,25 @@
     <div class="featured card clearfix">
         <a href="#">
             <p class="card-title">Featured recipe</p>
-            <h2 class="title">Lorem Ipsum</h3>
-            <p class="author">by: Dolor Sit Amet</p>
-            <p class="desc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores magni velit eos ipsam, necessitatibus officiis voluptate quis harum laboriosam nulla, molestias quibusdam officia voluptates! Rem natus quis a eveniet nihil!
-            </p>
+            <h2 class="title"><%= recipes[0].title %></h3>
+            <p class="author">by: <%= recipes[0].author %></p>
+            <p class="desc"><%= recipes[0].description %></p>
             <%# <a href="#" class="btn">Show me!</a> %>
         </a>
     </div>
     <ul class="list-card card">
         <p class="card-title">All recipes</p>
-        <li class="list-item">
-            <a href="#">
-                <h3 class="title">Lorem Ipsum</h3>
-                <p class="author">by: Dolor Sit Amet</p>
-                <p class="desc">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ab sint, corporis similique exercitationem saepe aliquam molestias quidem adipisci culpa nostrum iusto assumenda eligendi dolor. Culpa, accusantium doloribus! Corporis, ut?
-                </p>
-            </a>
-        </li>
-        <li class="list-item">
-            <a href="#">
-                <h3 class="title">Lorem Ipsum</h3>
-                <p class="author">by: Dolor Sit Amet</p>
-                <p class="desc">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ab sint, corporis similique exercitationem saepe aliquam molestias quidem adipisci culpa nostrum iusto assumenda eligendi dolor. Culpa, accusantium doloribus! Corporis, ut?
-                </p>
-            </a>
-        </li>
-        <li class="list-item">
-            <a href="#">
-                <h3 class="title">Lorem Ipsum</h3>
-                <p class="author">by: Dolor Sit Amet</p>
-                <p class="desc">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ab sint, corporis similique exercitationem saepe aliquam molestias quidem adipisci culpa nostrum iusto assumenda eligendi dolor. Culpa, accusantium doloribus! Corporis, ut?
-                </p>
-            </a>
-        </li>
-        <li class="list-item">
-        <a href="#">
-            <h3 class="title">Lorem Ipsum</h3>
-            <p class="author">by: Dolor Sit Amet</p>
-            <p class="desc">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ab sint, corporis similique exercitationem saepe aliquam molestias quidem adipisci culpa nostrum iusto assumenda eligendi dolor. Culpa, accusantium doloribus! Corporis, ut?
-            </p>
-        </a>
-    </li>
-    <li class="list-item">
-        <a href="#">
-            <h3 class="title">Lorem Ipsum</h3>
-            <p class="author">by: Dolor Sit Amet</p>
-            <p class="desc">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore, ab sint, corporis similique exercitationem saepe aliquam molestias quidem adipisci culpa nostrum iusto assumenda eligendi dolor. Culpa, accusantium doloribus! Corporis, ut?
-            </p>
-        </a>
-    </li>
+        <% recipes.slice(1).forEach((recipe) => { %>
+            <li class="list-item">
+                <a href="#">
+                    <h3 class="title"><%= recipe.title %></h3>
+                    <p class="author">by: <%= recipe.author %></p>
+                    <p class="desc"><%= recipe.description %></p>
+                </a>
+            </li>
+        <% }); %>
     </ul>
+
+
 
 <% include partials/footer %>

@@ -231,6 +231,7 @@ input {
 .featured {
     background: var(--featured-bg-color);
     font-size: 1.2rem;
+    border: 1px solid #FFEE58;
 }
 
 .featured .card-title {
@@ -243,6 +244,7 @@ input {
 
 .list-card {
     padding: 0;
+    border: 1px solid #E0E0E0;
 }
 
 .list-card li {
@@ -255,6 +257,10 @@ input {
 
 .list-card li:nth-child(odd) {
     background: var(--card-li-odd-color);
+}
+
+.list-card li:last-child {
+    border-bottom: none;
 }
 
 .list-card .desc {
@@ -300,9 +306,6 @@ form [name="description"] {
     display: block;
     /* width: 100%; */
 }
-
-
-
 
 /*  FOOTER STYLES */
 
