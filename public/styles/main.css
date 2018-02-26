@@ -8,10 +8,18 @@
     --topbar-border-color: #B71C1C;
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
-    --featured-bg-color: #EEEEEE;
+    --featured-bg-color: #FFF59D;
+    /* --featured-card-title-color: #FFEB3B; */
     --card-bg-color: #F5F5F5;
     --card-shadow-color: #9E9E9E;
     --card-title-color: #9E9E9E;
+    --card-li-color: #9E9E9E;
+    --card-li-odd-color: #EEEEEE;
+    --footer-bg-color: #EEEEEE;
+
+    --card-box-shadow:  0 6px 8px rgba(102,119,136,.03),
+                        0 1px 2px rgba(102,119,136,.3),
+                        0rem 1em 1em -1em var(--card-shadow-color);
 }
 
 html {
@@ -29,6 +37,24 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
     color: var(--main-font-color);
+}
+
+a {
+    color: var(--main-font-color);
+    text-decoration: none;
+}
+
+a:hover {
+    /* color: #757575; */
+    text-decoration: underline;
+}
+
+a.btn {
+    background: var(--btn-pad-color);
+    color: var(--btn-font-color);
+    padding: 15px 40px;
+    text-align: center;
+    box-shadow: var(--card-box-shadow);
 }
 
 /* HEADER STYLES */
@@ -78,22 +104,23 @@ body {
             transform: scaleX(1.4);
     text-decoration: none;
     border-radius: 5px;
+    box-shadow: var(--card-box-shadow);
 }
 
 .menu {
-    margin-top: 5px;
+    margin-top: 10px;
     max-height: 0;
     overflow: hidden;
     text-align: left;
     width: 100%;
-    -webkit-transition: max-height .25s linear;
-    -o-transition: max-height .25s linear;
-    transition: max-height .25s linear;
+    transition: max-height .25s linear, 
+                padding-bottom .125s linear;
 }
 
 .menu-visible {
     max-height: 500px;
     display: inline-block;
+    padding-bottom: 12px;    
 }
 
 .menu a {
@@ -104,15 +131,18 @@ body {
     text-decoration: none;
     border-radius: 5px;
     font-size: 1.2rem;
-    margin-top: .5rem;
+    margin-top: .7rem;
+    box-shadow: var(--card-box-shadow);
 }
 
 .menu a:first-child {
-    margin-top: .25rem;
+    /* margin-top: .25rem; */
+    margin-top: 0rem;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 800px) {
     .topbar {
+        padding: 1.5rem;
         border-bottom: 3px solid var(--topbar-border-color);
     }
     .container-topbar {
@@ -136,6 +166,7 @@ body {
         display: none;
     }
     .menu {
+        overflow: visible;
         width: inherit;
         max-height: inherit;
         margin-top: 0;
@@ -151,6 +182,9 @@ body {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center;
+    }
+    .menu-visible {
+        padding-bottom: 0;
     }
     .menu a {
         padding: 10px 40px;
@@ -172,13 +206,13 @@ body {
     border-radius: 5px;
     position: relative;
 
-    box-shadow: 0rem 1em 1em -1em var(--card-shadow-color);    
+    box-shadow: var(--card-box-shadow);
 }
 
 .card-title {
     position: absolute;
-    top: 0;
-    right: 30px;
+    top: -10px;
+    right: 15px;
     text-transform: lowercase;
     font-style: italic;
     color: var(--card-title-color);
@@ -193,15 +227,63 @@ body {
     font-size: 1.2rem;
 }
 
-@media screen and (min-width: 700px) {
-    /* .featured {
-        margin: 5%;
-        margin-top: 2.5%;
-    } */
+.featured .card-title {
+    color: var(--featured-card-title-color, var(--card-title-color));
+}
 
+.featured a.btn {
+    float: right;
+}
+
+.list-card {
+    padding: 0;
+}
+
+.list-card li {
+    text-decoration: none;
+    list-style: none;
+
+    padding: 3%;
+    border-bottom: 1px solid var(--card-li-color);
+}
+
+.list-card li:nth-child(odd) {
+    background: var(--card-li-odd-color);
+}
+
+.list-card .desc {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.author {
+    font-style: italic;
+}
+
+/* slightly enhanced, universal clearfix hack */
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \\*/
+* html .clearfix { height: 1&#37;; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+@media screen and (min-width: 800px) {
     .card {
         margin-top: 2.5%;
         margin: 5%;
+    }
+    .card-title {
+        top: 0;
+        right: 30px;
     }
 }
 
@@ -211,7 +293,7 @@ body {
 /*  FOOTER STYLES */
 
 footer {
-    background: var(--featured-bg-color);
+    background: var(--footer-bg-color);
     font-size: .9rem;
     margin-top: 1rem;
     padding: .5rem 1rem;
