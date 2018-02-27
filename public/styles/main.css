@@ -3,6 +3,8 @@
 /* TOP LEVEL STYLES */
 
 :root {
+    font-size: 1.1rem;
+
     --main-font-color: #212121;
     --main-bg-color: #FFFFFF;
     --topbar-border-color: #B71C1C;
@@ -22,6 +24,12 @@
                         0rem 1em 1em -1em var(--card-shadow-color);
 }
 
+@media screen and (min-width: 800px) {
+    :root {
+        font-size: 1rem;
+    }
+}
+
 html {
     background: var(--main-bg-color);
 }
@@ -35,13 +43,13 @@ html, body {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
     color: var(--main-font-color);
 }
 
 a {
     color: var(--main-font-color);
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover {
@@ -96,6 +104,7 @@ input {
     border-bottom: 3px solid var(--topbar-border-color);    
     padding-bottom: 10px;
     letter-spacing: 0rem;
+    font-size: 2rem;
 }
 
 .topbar em {
@@ -114,7 +123,7 @@ input {
     -webkit-transform: scaleX(1.4);
         -ms-transform: scaleX(1.4);
             transform: scaleX(1.4);
-    text-decoration: none;
+    text-decoration: none !important;
     border-radius: 5px;
     box-shadow: var(--card-box-shadow);
 }
@@ -169,6 +178,7 @@ input {
         padding: 0 20px;
     }
     .topbar h1 {
+        font-size: 2.5rem;
         border: none;
         position: static;
         padding-bottom: 0;
@@ -294,7 +304,7 @@ input {
 
 .new {
     background: var(--card-li-odd-color);
-    border: #e0e0e0;
+    border: 1px solid #E0E0E0;
 }
 
 form input,textarea {
@@ -310,6 +320,25 @@ form [name="description"] {
 form [type="submit"] {
     float: right;
     margin-top: 10px;
+}
+
+.more-ingredients, .more-steps {
+    float: right;
+    color: #64B5F6;
+}
+
+.steps {
+    counter-reset: steps;
+}
+
+.steps div {
+    counter-increment: steps;
+}
+
+.steps div::before {
+    content: counter(steps)'.';
+    display: inline-block;
+    padding: 10px 0 5px;
 }
 
 @media screen and (min-width: 800px) {
