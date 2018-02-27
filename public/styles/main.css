@@ -325,6 +325,7 @@ form [type="submit"] {
 .more-ingredients, .more-steps {
     float: right;
     color: #64B5F6;
+    font-size: 1rem;
 }
 
 .steps {
@@ -338,7 +339,16 @@ form [type="submit"] {
 .steps div::before {
     content: counter(steps)'.';
     display: inline-block;
+    padding: 0px 0 5px;
+}
+
+.steps div:first-child::before {
     padding: 10px 0 5px;
+}
+
+form hr {
+    color: #9E9E9E;
+    margin: 20px 0;
 }
 
 @media screen and (min-width: 800px) {
