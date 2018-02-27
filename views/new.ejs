@@ -1,10 +1,30 @@
 <% include partials/header %>
 
     <div class="featured card new">
+        <p class="card-title">New recipe</p>
         <form class="clearfix" action="/recipes" method="POST">
-            <label>Title: <input type="text" name="title" placeholder=""></label>
-            <label>Author: <input type="text" name="author" placeholder=""></label>
-            <label>Description:<textarea name="description" cols="10" rows="5" placeholder=""></textarea></label>
+            <label>Title: <input type="text" name="title" placeholder="" required></label>
+            <label>Author: <input type="text" name="author" placeholder="" required></label>
+            <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required></textarea></label>
+            <div class="clearfix">
+                <label class="ingredients">Ingredients:
+                    <input type="text" name="ingredients[]" required placeholder="Type ingredients here">
+                    <input type="text" name="ingredients[]" placeholder="for example:">
+                    <input type="text" name="ingredients[]" placeholder="1 tbsp Eye of Newt">
+                    <input type="text" name="ingredients[]">
+                    <input type="text" name="ingredients[]">
+                </label>
+                <a class="more-ingredients">+ more ingredients</a>
+            </div>
+            <div class="clearfix">
+                <label class="steps">Steps:
+                        <div><textarea name="steps[]" cols="10" rows="5" required placeholder="Type steps here"></textarea></div>
+                        <div><textarea name="steps[]" cols="10" rows="5" placeholder="for example:"></textarea></div>
+                        <div><textarea name="steps[]" cols="10" rows="5" placeholder="Preheat oven to 'stun'"></textarea></div>
+                </label>
+                <a class="more-steps">+ more ingredients</a>
+            </div>
+            <hr>
             <button class="btn" type="submit">Submit</button>
         </form>
     </div>

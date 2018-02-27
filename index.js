@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const seedRecipes = [
     {
         title: 'Pear brandy',
-        author: 'Ben',
+        author: 'Benjamin Liden',
         description: 'A very tasty pear brandy! Of roman and scotch heritage. What a mystery.'
     },
     {
@@ -38,8 +38,18 @@ app.get('/recipes', (req, res) => {
 });
 
 app.post('/recipes', (req, res) => {
-    console.log(req.body);
-    res.send('this is the post rt');
+    let { title, author, description, ingredients, steps } = req.body;
+    ingredients = ingredients.filter(recipe => recipe.trim().length > 0);
+    steps = steps.filter(step => step.trim().length > 0);
+    const newRecipe = {
+        title,
+        author,
+        description,
+        ingredients,
+        steps
+    };
+    console.log(newRecipe);
+    res.redirect('/recipes');
 })
 
 app.get('/new', (req, res) => {
