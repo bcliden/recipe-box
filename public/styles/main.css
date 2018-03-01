@@ -7,16 +7,22 @@
 
     --main-font-color: #212121;
     --main-bg-color: #FFFFFF;
+
     --topbar-border-color: #B71C1C;
+
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
+
     --featured-bg-color: #FFF59D;
-    /* --featured-card-title-color: #FFEB3B; */
+    --show-bg-color: #ECEFF1;
+    --show-border: 1px solid #CFD8DC;
+
     --card-bg-color: #F5F5F5;
     --card-shadow-color: #9E9E9E;
     --card-title-color: #9E9E9E;
     --card-li-color: #9E9E9E;
     --card-li-odd-color: #EEEEEE;
+
     --footer-bg-color: #EEEEEE;
 
     --card-box-shadow:  0 6px 8px rgba(102,119,136,.03),
@@ -66,6 +72,11 @@ input {
     display: block;
 }
 
+ul, ol {
+    margin: 0;
+    padding: 0 0 0 2rem;
+}
+
 .clearfix:after {
     content: "";
     display: table;
@@ -111,7 +122,13 @@ input {
 }
 
 .container-body {
-    padding: 0 10px;      
+    padding: 0 10px;
+
+    /* push footer to bottom if content isn't long enough */
+    min-height: 70vh;
+    min-height: -webkit-calc(100vh - 100px - 32px);
+    min-height: -moz-calc(100vh - 100px -  30px - 32px);
+    min-height: calc(100vh - 100px - 30px - 32px);
 }
 
 .topbar h1 {
@@ -257,29 +274,29 @@ input {
     color: var(--card-title-color);
 }
 
-.featured .card-title {
-    font-size: 1.1rem;
-}
-
 .featured {
     background: var(--featured-bg-color);
-    font-size: 1.2rem;
     border: 1px solid #FFEE58;
 }
 
 .featured .card-title {
+    font-size: 1.1rem;
     color: var(--featured-card-title-color, var(--card-title-color));
 }
 
-.featured h2 {
+.big {
+    font-size: 1.2rem;
+}
+
+.big h2 {
     font-size: 1.6rem;
 }
 
-.featured p[class="author"] {
+.big p[class="author"] {
     font-size: 1rem;
 }
 
-.featured a.btn {
+.big a.btn {
     float: right;
 }
 
@@ -316,7 +333,6 @@ input {
 
 @media screen and (min-width: 800px) {
     .card {
-        margin-top: 2.5%;
         margin: 5%;
     }
     .card-title {
@@ -380,6 +396,35 @@ form hr {
     form [type="submit"] {
         margin-top: 20px;
     }
+}
+
+/*  SHOW ROUTE STYLES */
+
+.show {
+    background: var(--show-bg-color);
+    border: var(--show-border);
+}
+
+.show h4 {
+    margin-bottom: .5rem;
+}
+
+.show-list {
+    /* list-style-position: inside; */
+    line-height: 2rem;
+}
+
+.show li span{
+    position: relative;
+    left: 1.5rem;
+}
+
+.show-hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 2rem auto;
 }
 /*  FOOTER STYLES */
 

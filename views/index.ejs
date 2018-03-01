@@ -1,7 +1,7 @@
 <% include partials/header %>
 <%#    <h2>Featured recipe:</h2> %>
-    <div class="featured card clearfix">
-        <a href="#">
+    <div class="featured card big clearfix">
+        <a href="/recipes/<%= recipes[0]._id %>">
             <p class="card-title">Featured recipe</p>
             <h2 class="title"><%= recipes[0].title %></h3>
             <p class="author">by: <%= recipes[0].author %></p>
@@ -13,7 +13,7 @@
         <p class="card-title">All recipes</p>
         <% recipes.slice(1).forEach((recipe) => { %>
             <li class="list-item">
-                <a href="#">
+                <a href="/recipes/<%= recipe._id %>">
                     <h3 class="title"><%= recipe.title %></h3>
                     <p class="author">by: <%= recipe.author %></p>
                     <p class="desc"><%= recipe.description %></p>

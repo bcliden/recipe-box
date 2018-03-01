@@ -20,7 +20,7 @@ router.post('/recipes', (req, res) => {
     let { title, author, description, ingredients, steps } = req.body;
     ingredients = ingredients.filter(recipe => recipe.trim().length > 0);
     steps = steps.filter(step => step.trim().length > 0);
-    
+
     Recipe.create({
         title,
         author,
@@ -34,6 +34,14 @@ router.post('/recipes', (req, res) => {
 
 router.get('/new', (req, res) => {
     res.render('new');
+});
+
+router.get('/recipes/:recipeId', (req, res) => {
+    Recipe.findOne({ _id: req.params.recipeId })
+        .then( foundRecipe => {
+            res.render('show', { recipe: foundRecipe });
+        })
+        .catch( err => console.err(err));
 });
 
 module.exports = router;

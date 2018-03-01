@@ -1,0 +1,23 @@
+<% include partials/header %>
+
+<div class="show card big">
+    <p class="card-title">Recipe</p>
+    <h2 class="title"><%= recipe.title %></h2>
+    <p class="author">by: <%= recipe.author %></p>
+    <p class="desc"><%= recipe.description %></p>
+    <hr class="show-hr">
+    <ul class="show-list show-ingredients">
+        <h4>Ingredients:</h4>
+        <% recipe.ingredients.forEach( ingredient => { %>
+            <li><span><%= ingredient %></span></li>
+        <% }); %>
+    </ul>
+    <ol class="show-list show-steps">
+        <h4>Steps:</h4>
+        <% recipe.steps.forEach( step => { %>
+            <li><span><%= step %></span></li>
+        <% }); %>
+    </ol>
+</div>
+
+<% include partials/footer %>
