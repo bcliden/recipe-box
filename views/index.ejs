@@ -1,12 +1,11 @@
 <% include partials/header %>
-<%#    <h2>Featured recipe:</h2> %>
+
     <div class="featured card big clearfix">
         <a href="/recipes/<%= recipes[0]._id %>">
             <p class="card-title">Featured recipe</p>
             <h2 class="title"><%= recipes[0].title %></h3>
             <p class="author">by: <%= recipes[0].author %></p>
             <p class="desc"><%= recipes[0].description %></p>
-            <%# <a href="#" class="btn">Show me!</a> %>
         </a>
     </div>
     <ul class="list-card card">
@@ -21,7 +20,5 @@
             </li>
         <% }); %>
     </ul>
-
-
 
 <% include partials/footer %>
