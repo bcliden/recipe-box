@@ -37,11 +37,27 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/recipes/:recipeId', (req, res) => {
-    Recipe.findOne({ _id: req.params.recipeId })
+    Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
             res.render('show', { recipe: foundRecipe });
         })
         .catch( err => console.err(err));
 });
+
+router.get('/recipes/:recipeId/edit', (req, res) => {
+    Recipe.findById( req.params.recipeId )
+        .then( foundRecipe => {
+            res.render('edit', { recipe: foundRecipe });
+        })
+        .catch( err => console.err(err));
+});
+
+router.post('/recipes/:recipeId', (req, res) => {
+    Recipe.findByIdAndUpdate( req.params.recipeId, req.body, { new: true })
+        .then( updatedRecipe => {
+            res.render('show', { recipe: updatedRecipe });
+        })
+        .catch( err => console.err(err));
+})
 
 module.exports = router;

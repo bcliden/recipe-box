@@ -12,6 +12,8 @@
 
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
+    --btn-edit-pad-color: #FFB74D;
+    --btn-update-pad-color: #81C784;
 
     --featured-bg-color: #FFF59D;
     --show-bg-color: #ECEFF1;
@@ -69,6 +71,14 @@ a:hover {
     box-shadow: var(--card-box-shadow);
     border: none;
     border-radius: 5px;
+}
+
+.edit {
+    background: var(--btn-edit-pad-color);
+}
+
+.update {
+    background: var(--btn-update-pad-color);
 }
 
 input {

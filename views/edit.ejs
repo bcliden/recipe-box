@@ -1,0 +1,38 @@
+<% include partials/header %>
+
+    <div class="card new big">
+        <p class="card-title">edit recipe</p>
+        <form class="clearfix" action="/recipes/<%= recipe._id %>" method="POST">
+            <label>Title: <input type="text" name="title" placeholder="" required value="<%= recipe.title %>"></label>
+            <label>Author: <input type="text" name="author" placeholder="" required value="<%= recipe.author %>"></label>
+            <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required><%= recipe.description %></textarea></label>
+            <div class="clearfix">
+                <label class="ingredients">Ingredients:
+                    <% recipe.ingredients.forEach( ingredient => { %>
+                        <% if (ingredient[0]) { %>
+                            <input type="text" name="ingredients[]" required value="<%= ingredient %>">
+                        <% } else { %>
+                            <input type="text" name="ingredients[]" value="<%= ingredient %>">                            
+                        <% } %>
+                    <% }); %>
+                </label>
+                <a class="more-ingredients">+ more ingredients</a>
+            </div>
+            <div class="clearfix">
+                <label class="steps">Steps:
+                    <% recipe.steps.forEach( step => { %>
+                        <% if (step[0]) { %>
+                            <div><textarea name="steps[]" cols="10" rows="5" required><%= step %></textarea></div>
+                        <% } else { %>
+                            <div><textarea name="steps[]" cols="10" rows="5"><%= step %></textarea></div>
+                        <% } %>
+                    <% }); %>
+                </label>
+                <a class="more-steps">+ more ingredients</a>
+            </div>
+            <hr>
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </div>
+
+<% include partials/footer %>

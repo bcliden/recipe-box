@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-<div class="show card big">
+<div class="show card big clearfix">
     <p class="card-title">Recipe</p>
     <h2 class="title"><%= recipe.title %></h2>
     <p class="author">by: <%= recipe.author %></p>
@@ -18,6 +18,8 @@
             <li><span><%= step %></span></li>
         <% }); %>
     </ol>
+    <hr class="show-hr">
+    <a href="/recipes/<%= recipe._id %>/edit" class="btn edit">Edit</a>
 </div>
 
 <% include partials/footer %>
