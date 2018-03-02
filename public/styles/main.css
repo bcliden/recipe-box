@@ -326,28 +326,6 @@ main {
     font-style: italic;
 }
 
-.show .btn {
-    margin: 10% 5% 0;
-    display: block;
-    float: none;
-}
-
-.edit {
-    background: var(--btn-edit-pad-color);
-}
-
-.delete {
-    background: var(--btn-delete-pad-color);
-    /* margin-left: 5%; */
-}
-
-@media screen and (min-width: 426px) {
-    .show .btn {
-        float: right;
-        margin: 0 0 0 5%;
-    }
-}
-
 @media screen and (min-width: 800px) {
     .card {
         margin: 5%;
@@ -355,10 +333,6 @@ main {
     .card-title {
         top: 0;
         right: 30px;
-    }
-    .show .btn {
-        float: right;
-        margin: 0 0 0 5%;
     }
 }
 
@@ -455,6 +429,29 @@ ul.show-list {
     margin: 1rem auto;
 }
 
+.show .btn {
+    margin: 10% 5% 0;
+    display: block;
+    float: none;
+}
+
+.edit {
+    background: var(--btn-edit-pad-color);
+}
+
+.delete {
+    background: var(--btn-delete-pad-color);
+
+    /* margin-left: 5%; */
+}
+
+@media screen and (min-width: 426px) {
+    .show .btn {
+        float: right;
+        margin: 0 0 0 5%;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .show li span{
         position: relative;
@@ -468,6 +465,10 @@ ul.show-list {
     }
     .show-hr {
         margin: 2rem auto;
+    }
+    .show .btn {
+        float: right;
+        margin: 0 0 0 5%;
     }
 }
 

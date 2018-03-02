@@ -4,6 +4,8 @@ const db = require('../models');
 const Recipe = db.Recipe;
 const helpers = require('../helpers');
 
+// BASE DIR
+
 router.get('/', (req, res) => {
     res.redirect('/recipes');
 });
@@ -75,6 +77,16 @@ router.put('/recipes/:recipeId', (req, res) => {
 });
 
 // DESTROY ROUTE
+
+
+// hacky way to make DELETE request with the SHOW route <a> tag
+router.use('/recipes/:recipeId', ( req, res, next ) => {
+    if ( req.query._method == 'DELETE' ) {
+        req.method = 'DELETE';
+        req.url = req.path;
+    }
+    next();
+});
 
 router.delete('/recipes/:recipeId', (req, res) => {
     Recipe.findByIdAndRemove( req.params.recipeId )
