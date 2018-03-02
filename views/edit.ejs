@@ -2,7 +2,7 @@
 
     <div class="card new big">
         <p class="card-title">edit recipe</p>
-        <form class="clearfix" action="/recipes/<%= recipe._id %>" method="POST">
+        <form class="clearfix" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
             <label>Title: <input type="text" name="title" placeholder="" required value="<%= recipe.title %>"></label>
             <label>Author: <input type="text" name="author" placeholder="" required value="<%= recipe.author %>"></label>
             <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required><%= recipe.description %></textarea></label>

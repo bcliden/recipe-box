@@ -13,7 +13,7 @@
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
     --btn-edit-pad-color: #FFB74D;
-    --btn-update-pad-color: #81C784;
+    --btn-delete-pad-color: #E57373;
 
     --featured-bg-color: #FFF59D;
     --show-bg-color: #ECEFF1;
@@ -73,14 +73,6 @@ a:hover {
     border-radius: 5px;
 }
 
-.edit {
-    background: var(--btn-edit-pad-color);
-}
-
-.update {
-    background: var(--btn-update-pad-color);
-}
-
 input {
     display: block;
 }
@@ -123,7 +115,6 @@ header {
 
 .container {
     max-width: 950px;  
-    margin: 0 auto;  
 }
 
 main {
@@ -203,6 +194,9 @@ main {
         padding: 1.5rem;
         border-bottom: 3px solid var(--topbar-border-color);
     }
+    .container {
+        margin: 0 auto;  
+    }
     .container-topbar {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -213,6 +207,8 @@ main {
     }
     .container-body {
         padding: 0 20px;
+        padding: 0;
+        width: 95%;
     }
     .topbar h1 {
         font-size: 2.5rem;
@@ -248,10 +244,6 @@ main {
     .menu a {
         padding: 10px 40px;
         margin: 0px 10px !important;
-    }
-    .container-body {
-        padding: 0;
-        width: 95%;
     }
 }
 
@@ -299,7 +291,7 @@ main {
     font-size: 1rem;
 }
 
-.big a.btn {
+.featured a.btn {
     float: right;
 }
 
@@ -334,6 +326,28 @@ main {
     font-style: italic;
 }
 
+.show .btn {
+    margin: 10% 5% 0;
+    display: block;
+    float: none;
+}
+
+.edit {
+    background: var(--btn-edit-pad-color);
+}
+
+.delete {
+    background: var(--btn-delete-pad-color);
+    /* margin-left: 5%; */
+}
+
+@media screen and (min-width: 426px) {
+    .show .btn {
+        float: right;
+        margin: 0 0 0 5%;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .card {
         margin: 5%;
@@ -341,6 +355,10 @@ main {
     .card-title {
         top: 0;
         right: 30px;
+    }
+    .show .btn {
+        float: right;
+        margin: 0 0 0 5%;
     }
 }
 
@@ -366,7 +384,7 @@ form [name="description"] {
 
 form [type="submit"] {
     float: right;
-    margin-top: 10px;
+    margin: .5rem;
 }
 
 .more-ingredients, .more-steps {

@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const Recipe = db.Recipe;
-const seedRecipes = require('../seedRecipes');
+const helpers = require('../helpers');
 
 router.get('/', (req, res) => {
     res.redirect('/recipes');
 });
+
+// INDEX ROUTE
 
 router.get('/recipes', (req, res) => {
     Recipe.find({})
@@ -16,25 +18,33 @@ router.get('/recipes', (req, res) => {
         .catch( err => console.err(err));
 });
 
-router.post('/recipes', (req, res) => {
-    let { title, author, description, ingredients, steps } = req.body;
-    ingredients = ingredients.filter(recipe => recipe.trim().length > 0);
-    steps = steps.filter(step => step.trim().length > 0);
+// CREATE ROUTE
 
-    Recipe.create({
-        title,
-        author,
-        description,
-        ingredients,
-        steps
-    })
+router.post('/recipes', (req, res) => {
+
+    Recipe.create( helpers.trimReqBody(req.body) )
+    // let { title, author, description, ingredients, steps } = req.body;
+    // ingredients = ingredients.filter(recipe => recipe.trim().length > 0);
+    // steps = steps.filter(step => step.trim().length > 0);
+
+    // Recipe.create({
+    //     title,
+    //     author,
+    //     description,
+    //     ingredients,
+    //     steps
+    // })
         .then( () => res.redirect('/recipes') )
         .catch( err => console.err(err) );
 });
 
+// NEW ROUTE
+
 router.get('/new', (req, res) => {
     res.render('new');
 });
+
+// SHOW ROUTE
 
 router.get('/recipes/:recipeId', (req, res) => {
     Recipe.findById( req.params.recipeId )
@@ -44,6 +54,8 @@ router.get('/recipes/:recipeId', (req, res) => {
         .catch( err => console.err(err));
 });
 
+// EDIT ROUTE
+
 router.get('/recipes/:recipeId/edit', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
@@ -52,12 +64,25 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
         .catch( err => console.err(err));
 });
 
-router.post('/recipes/:recipeId', (req, res) => {
-    Recipe.findByIdAndUpdate( req.params.recipeId, req.body, { new: true })
+// UPDATE ROUTE
+
+router.put('/recipes/:recipeId', (req, res) => {
+    Recipe.findByIdAndUpdate( req.params.recipeId, helpers.trimReqBody(req.body) , { new: true })
         .then( updatedRecipe => {
             res.render('show', { recipe: updatedRecipe });
         })
         .catch( err => console.err(err));
-})
+});
+
+// DESTROY ROUTE
+
+router.delete('/recipes/:recipeId', (req, res) => {
+    Recipe.findByIdAndRemove( req.params.recipeId )
+        .then( data => {
+            console.log(data);
+            res.redirect('/recipes');
+        })
+        .catch( err => console.err(err));
+});
 
 module.exports = router;
