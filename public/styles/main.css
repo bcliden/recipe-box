@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 /* TOP LEVEL STYLES */
 
@@ -16,20 +16,26 @@
     --btn-delete-pad-color: #E57373;
 
     --featured-bg-color: #FFF59D;
-    --show-bg-color: #ECEFF1;
-    --show-border: 1px solid #CFD8DC;
+    --featured-border: 1px solid #FFEE58;
+    --show-bg-color: #F5F5F5;
+    --show-border: 1px solid #EEEEEE;
+    --new-edit-color: #EEEEEE;
+    --new-edit-border: 1px solid #E0E0E0;
+    --form-input-border: 1px solid #A9A9A9;
+    --more-field-color: #64B5F6;
 
     --card-bg-color: #F5F5F5;
-    --card-shadow-color: #9E9E9E;
     --card-title-color: #9E9E9E;
-    --card-li-color: #9E9E9E;
     --card-li-odd-color: #EEEEEE;
-
-    --footer-bg-color: #EEEEEE;
-
+    --card-shadow-color: #9E9E9E;
+    --list-card-border: 1px solid #E0E0E0;
+    --card-li-border-bot: 1px solid #9E9E9E;
     --card-box-shadow:  0 6px 8px rgba(102,119,136,.03),
                         0 1px 2px rgba(102,119,136,.3),
                         0rem 1em 1em -1em var(--card-shadow-color);
+
+    --footer-bg-color: #EEEEEE;
+    --footer-border: 1px solid #E0E0E0;
 }
 
 html {
@@ -47,6 +53,9 @@ html, body {
 
 body {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
     color: var(--main-font-color);
     display: flex;
     flex-direction: column;
@@ -137,7 +146,7 @@ main {
 
 .topbar em {
     font-size: .9rem;
-    margin-right: -6px;
+    margin-right: -3px;
 }
 
 .menu-button {
@@ -256,7 +265,6 @@ main {
     background: var(--card-bg-color);
     border-radius: 5px;
     position: relative;
-
     box-shadow: var(--card-box-shadow);
 }
 
@@ -271,7 +279,7 @@ main {
 
 .featured {
     background: var(--featured-bg-color);
-    border: 1px solid #FFEE58;
+    border: var(--featured-border);
 }
 
 .featured .card-title {
@@ -297,7 +305,7 @@ main {
 
 .list-card {
     padding: 0 !important;
-    border: 1px solid #E0E0E0;
+    border: var(--list-card-border);
 }
 
 .list-card li {
@@ -305,7 +313,7 @@ main {
     list-style: none;
 
     padding: 3%;
-    border-bottom: 1px solid var(--card-li-color);
+    border-bottom: var(--card-li-border-bot);
 }
 
 .list-card li:nth-child(odd) {
@@ -340,15 +348,15 @@ main {
 /* NEW & EDIT ROUTE STYLES */
 
 .new {
-    background: var(--card-li-odd-color);
-    border: 1px solid #E0E0E0;
+    background: var(--new-edit-color);
+    border: var(--new-edit-border);
 }
 
 form input,textarea {
-    width: calc(100% - 6px);
+    width: calc(100% - 12px);
     margin-bottom: 10px;
     border-radius: 5px;
-    border: 1px solid #a9a9a9;
+    border: var(--form-input-border);
     padding: 5px;
 }
 
@@ -364,7 +372,7 @@ form [type="submit"] {
 
 .more-ingredients, .more-steps {
     float: right;
-    color: #64B5F6;
+    color: var(--more-field-color);
     font-size: 1rem;
 }
 
@@ -477,6 +485,7 @@ ul.show-list {
 
 footer {
     background: var(--footer-bg-color);
+    border-top: var(--footer-border);
     font-size: .9rem;
     padding: .5rem 1rem;
     flex: 0 0 auto;
