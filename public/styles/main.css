@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 /* TOP LEVEL STYLES */
 
@@ -131,7 +131,7 @@ main {
     position: relative;
     border-bottom: 3px solid var(--topbar-border-color);    
     padding-bottom: 10px;
-    letter-spacing: 0rem;
+    /* letter-spacing: 0rem; */
     font-size: 2rem;
 }
 
