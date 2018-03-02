@@ -478,7 +478,6 @@ ul.show-list {
 footer {
     background: var(--footer-bg-color);
     font-size: .9rem;
-    margin-top: 1rem;
     padding: .5rem 1rem;
     flex: 0 0 auto;
 }
