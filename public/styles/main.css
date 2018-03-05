@@ -481,6 +481,12 @@ ul.show-list {
     }
 }
 
+/* ERROR STYLES */
+
+.error a {
+    color: var(--more-field-color);
+}
+
 /*  FOOTER STYLES */
 
 footer {

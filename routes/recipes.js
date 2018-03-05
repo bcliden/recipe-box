@@ -17,7 +17,10 @@ router.get('/recipes', (req, res) => {
         .then( foundRecipes => {
             res.render('index', { recipes: foundRecipes });
         })
-        .catch( err => console.err(err));
+        .catch( err => {
+            console.error(err.message);
+            res.render('error');
+        });
 });
 
 // CREATE ROUTE
@@ -37,7 +40,7 @@ router.post('/recipes', (req, res) => {
     //     steps
     // })
         .then( () => res.redirect('/recipes') )
-        .catch( err => console.err(err) );
+        .catch( err => console.error(err) );
 });
 
 // NEW ROUTE
@@ -53,7 +56,10 @@ router.get('/recipes/:recipeId', (req, res) => {
         .then( foundRecipe => {
             res.render('show', { recipe: foundRecipe });
         })
-        .catch( err => console.err(err));
+        .catch( err => {
+            console.error(err.message);
+            res.render('error');
+        });
 });
 
 // EDIT ROUTE
@@ -63,7 +69,10 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
         .then( foundRecipe => {
             res.render('edit', { recipe: foundRecipe });
         })
-        .catch( err => console.err(err));
+        .catch( err => {
+            console.error(err.message);
+            res.render('error');
+        });
 });
 
 // UPDATE ROUTE
@@ -73,7 +82,10 @@ router.put('/recipes/:recipeId', (req, res) => {
         .then( updatedRecipe => {
             res.render('show', { recipe: updatedRecipe });
         })
-        .catch( err => console.err(err));
+        .catch( err => {
+            console.error(err.message);
+            res.render('error');
+        });
 });
 
 // DESTROY ROUTE
@@ -94,7 +106,14 @@ router.delete('/recipes/:recipeId', (req, res) => {
             console.log(data);
             res.redirect('/recipes');
         })
-        .catch( err => console.err(err));
+        .catch( err => {
+            console.error(err.message);
+            res.render('error');
+        });
+});
+
+router.get('/*', (req, res) => {
+    res.render('error');
 });
 
 module.exports = router;
