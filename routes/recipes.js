@@ -4,15 +4,9 @@ const db = require('../models');
 const Recipe = db.Recipe;
 const helpers = require('../helpers');
 
-// BASE DIR
-
-router.get('/', (req, res) => {
-    res.redirect('/recipes');
-});
-
 // INDEX ROUTE
 
-router.get('/recipes', (req, res) => {
+router.get('/', (req, res) => {
     Recipe.find({})
         .then( foundRecipes => {
             res.render('index', { recipes: foundRecipes });
@@ -25,7 +19,7 @@ router.get('/recipes', (req, res) => {
 
 // CREATE ROUTE
 
-router.post('/recipes', (req, res) => {
+router.post('/', (req, res) => {
 
     Recipe.create( helpers.trimReqBody(req.body) )
     // let { title, author, description, ingredients, steps } = req.body;
@@ -51,7 +45,7 @@ router.get('/new', (req, res) => {
 
 // SHOW ROUTE
 
-router.get('/recipes/:recipeId', (req, res) => {
+router.get('/:recipeId', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
             res.render('show', { recipe: foundRecipe });
@@ -64,7 +58,7 @@ router.get('/recipes/:recipeId', (req, res) => {
 
 // EDIT ROUTE
 
-router.get('/recipes/:recipeId/edit', (req, res) => {
+router.get('/:recipeId/edit', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
             res.render('edit', { recipe: foundRecipe });
@@ -77,7 +71,7 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
 // UPDATE ROUTE
 
-router.put('/recipes/:recipeId', (req, res) => {
+router.put('/:recipeId', (req, res) => {
     Recipe.findByIdAndUpdate( req.params.recipeId, helpers.trimReqBody(req.body) , { new: true })
         .then( updatedRecipe => {
             res.render('show', { recipe: updatedRecipe });
@@ -92,7 +86,7 @@ router.put('/recipes/:recipeId', (req, res) => {
 
 
 // hacky way to make DELETE request with the SHOW route <a> tag
-router.use('/recipes/:recipeId', ( req, res, next ) => {
+router.use('/:recipeId', ( req, res, next ) => {
     if ( req.query._method == 'DELETE' ) {
         req.method = 'DELETE';
         req.url = req.path;
@@ -100,7 +94,7 @@ router.use('/recipes/:recipeId', ( req, res, next ) => {
     next();
 });
 
-router.delete('/recipes/:recipeId', (req, res) => {
+router.delete('/:recipeId', (req, res) => {
     Recipe.findByIdAndRemove( req.params.recipeId )
         .then( data => {
             console.log(data);

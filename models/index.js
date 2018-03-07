@@ -16,3 +16,4 @@ mongoose.connection
     .catch(err => console.error(err.message));
 
 module.exports.Recipe = require('./recipe');
+module.exports.User = require('./user');
