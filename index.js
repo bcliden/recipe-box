@@ -4,7 +4,6 @@ const ejs = require('ejs');
 const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
 const recipeRoutes = require('./routes/recipes');
-const User = require('./models/index').User;
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -22,6 +21,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // PASSPORT CONFIG
+const User = require('./models/index').User;
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

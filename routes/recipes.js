@@ -20,19 +20,7 @@ router.get('/', (req, res) => {
 // CREATE ROUTE
 
 router.post('/', (req, res) => {
-
     Recipe.create( helpers.trimReqBody(req.body) )
-    // let { title, author, description, ingredients, steps } = req.body;
-    // ingredients = ingredients.filter(recipe => recipe.trim().length > 0);
-    // steps = steps.filter(step => step.trim().length > 0);
-
-    // Recipe.create({
-    //     title,
-    //     author,
-    //     description,
-    //     ingredients,
-    //     steps
-    // })
         .then( () => res.redirect('/recipes') )
         .catch( err => console.error(err) );
 });

@@ -1,0 +1,21 @@
+<% include partials/header %>
+
+    <% if(user){ %>
+<div class="card big featured clearfix">
+    <h2 class="">Currently logged in as "<%= user.username %>".</h2>
+    <a href="/logout" class="btn">Logout</a>
+</div>
+    <% } %>
+
+
+<div class="card big login">
+    <p class="card-title">Login</p>
+    <h2>Log in:</h2>
+    <form action="/login" method="POST" class="clearfix">
+        <label>Username:<input type="text" name="username" required></label>
+        <label>Password:<input type="password" name="password" required></label>
+        <button class="btn" type="submit">Submit</button>
+    </form>
+</div>
+
+<% include partials/footer %>
