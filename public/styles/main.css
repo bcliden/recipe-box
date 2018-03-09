@@ -14,6 +14,7 @@
     --btn-font-color: #FAFAFA;
     --btn-edit-pad-color: #FFB74D;
     --btn-delete-pad-color: #E57373;
+    --btn-logout-pad-color: #E57373;
 
     --featured-bg-color: #FFF59D;
     --featured-border: 1px solid #FFEE58;
@@ -196,6 +197,12 @@ main {
 .menu a:first-child {
     /* margin-top: .25rem; */
     margin-top: 0rem;
+}
+
+@media screen and (min-width: 426px) {
+    .topbar h1 {
+        font-size: 2.5rem;
+    }
 }
 
 @media screen and (min-width: 800px) {
@@ -478,6 +485,20 @@ ul.show-list {
     .show .btn {
         float: right;
         margin: 0 0 0 5%;
+    }
+}
+
+/* LOGIN STYLES */
+
+.logout a {
+    float: right;
+    background: var(--btn-logout-pad-color);
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 800px) {
+    .logout a {
+        margin-bottom: .5rem;
     }
 }
 

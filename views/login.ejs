@@ -1,13 +1,14 @@
 <% include partials/header %>
 
-    <% if(user){ %>
-<div class="card big featured clearfix">
-    <h2 class="">Currently logged in as "<%= user.username %>".</h2>
+<% if(user){ %>
+<div class="card big logout clearfix">
+    <p class="card-title">user info</p>
+    <h4 class="">Currently logged in as "<%= user.username %>".</h4>
     <a href="/logout" class="btn">Logout</a>
 </div>
-    <% } %>
+<% } %>
 
-
+<% if(!user) { %>
 <div class="card big login">
     <p class="card-title">Login</p>
     <h2>Log in:</h2>
@@ -17,5 +18,6 @@
         <button class="btn" type="submit">Submit</button>
     </form>
 </div>
+<% } %>
 
 <% include partials/footer %>

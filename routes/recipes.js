@@ -9,7 +9,7 @@ const helpers = require('../helpers');
 router.get('/', (req, res) => {
     Recipe.find({})
         .then( foundRecipes => {
-            res.render('index', { recipes: foundRecipes });
+            res.render('index', { recipes: foundRecipes, user: req.user });
         })
         .catch( err => {
             console.error(err.message);

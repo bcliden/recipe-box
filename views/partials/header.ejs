@@ -12,12 +12,18 @@
 <body>
     <header class="topbar">
         <div class="container container-topbar">
-            <h1><em>the</em> Recipe Box </h1>
+            <%# <a href="/recipes"><h1><em>the</em> Recipe Box</h1></a> %>
+            <h1><em>the</em> Recipe Box</h1>
             <a href="#" class="menu-button">X</a>
             <nav class="menu">
                 <a href="/recipes/new">New</a>
-                <a href="/recipes">Index</a>
+                <%# <a href="/recipes">Index</a> %>
                 <a href="#">About</a>
+                <% if(user) {%>
+                    <a href="/login">Account</a>
+                <% } else { %>
+                    <a href="/login">Log In</a>
+                <% } %>
             </nav>
         </div>
     </header>
