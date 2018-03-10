@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 // NEW ROUTE
 
 router.get('/new', (req, res) => {
-    res.render('new');
+    res.render('new', { user: req.user });
 });
 
 // SHOW ROUTE
@@ -36,7 +36,7 @@ router.get('/new', (req, res) => {
 router.get('/:recipeId', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
-            res.render('show', { recipe: foundRecipe });
+            res.render('show', { recipe: foundRecipe, user: req.user });
         })
         .catch( err => {
             console.error(err.message);
@@ -49,7 +49,7 @@ router.get('/:recipeId', (req, res) => {
 router.get('/:recipeId/edit', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
-            res.render('edit', { recipe: foundRecipe });
+            res.render('edit', { recipe: foundRecipe, user: req.user });
         })
         .catch( err => {
             console.error(err.message);

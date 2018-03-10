@@ -142,7 +142,7 @@ main {
     border-bottom: var(--topbar-border);    
     padding-bottom: 10px;
     /* letter-spacing: 0rem; */
-    font-size: 2rem;
+    font-size: 2.25rem;
 }
 
 .topbar em {
@@ -258,7 +258,7 @@ main {
         padding-bottom: 0;
     }
     .menu a {
-        padding: 10px 40px;
+        padding: 10px 30px;
         margin: 0px 10px !important;
     }
 }
