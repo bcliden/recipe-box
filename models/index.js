@@ -5,15 +5,22 @@ mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
 mongoose.connect(uri)
-    .catch(err => console.error(err.message));
+    // .catch(err => {
+    //     console.error('DB error:', err.message);
+    // });
+
 mongoose.connection
+    .once('open', () => console.log('DB connected successfully to:', uri))
     .on('error', (err) => {
-        console.error.bind(console, 'Connection error:');
+        console.error('DB error:', err.message);
+        process.exit(1);
+        // exitCode is supposed to be friendlier, but didn't work on drop in
+        // process.exitCode = 1;
     })
-    .once('open', () => {
-        console.log('DB connected successfully.');
+    .on('disconnected', () => {
+        console.error('DB disconnected from:', uri);
+        process.exit(1);
     })
-    .catch(err => console.error(err.message));
 
 module.exports.Recipe = require('./recipe');
 module.exports.User = require('./user');
