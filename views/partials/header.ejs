@@ -29,11 +29,9 @@
     </header>
     <main class="container container-body">
 
-    <% console.log(flash) %>
     <% while( message = flash.shift() ){ %>
         <div class="card flash flash-<%= message.type %>">
             <%= message.message %>
-            <% console.log(message) %>
         </div>
     <% }; %>
 
