@@ -5,9 +5,6 @@ mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
 mongoose.connect(uri)
-    // .catch(err => {
-    //     console.error('DB error:', err.message);
-    // });
 
 mongoose.connection
     .once('open', () => console.log('DB connected successfully to:', uri))
