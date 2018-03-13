@@ -14,7 +14,6 @@ router.use('/:recipeId', ( req, res, next ) => {
     next();
 });
 
-
 // INDEX ROUTE
 
 router.get('/', (req, res) => {
@@ -33,13 +32,17 @@ router.get('/', (req, res) => {
 router.post('/', 
     helpers.isLoggedIn,
     (req, res) => {
-        Recipe.create( helpers.trimReqBody(req.body) )
+        let trimmedBody = trimReqBody(req.body);
+        Recipe.create( trimmedBody )
             .then( () => {
                 req.flash('success', 'Recipe added')
                 res.redirect('/recipes');
             })
-            .catch( err => console.error(err) );
-});
+            .catch( err => {
+                console.error(err.message);
+                res.render('error');
+            });
+    });
 
 // NEW ROUTE
 
@@ -58,6 +61,7 @@ router.get('/:recipeId', (req, res) => {
         })
         .catch( err => {
             console.error(err.message);
+            res.status(404).render('/error')
         });
 });
 
@@ -65,7 +69,7 @@ router.get('/:recipeId', (req, res) => {
 
 router.get('/:recipeId/edit', 
     helpers.isLoggedIn,
-    function (req, res) {
+    (req, res) => {
         Recipe.findById( req.params.recipeId )
             .then( foundRecipe => {
                 res.render('edit', { recipe: foundRecipe });
@@ -95,19 +99,15 @@ router.put('/:recipeId', (req, res) => {
 router.delete('/:recipeId',
     helpers.isLoggedIn,
     (req, res) => {
-    Recipe.findByIdAndRemove( req.params.recipeId )
-        .then( data => {
-            req.flash('success', 'Recipe successfully deleted.')
-            res.redirect('/recipes');
-        })
-        .catch( err => {
-            console.error(err.message);
-            res.render('error');
-        });
-});
-
-router.get('/*', (req, res) => {
-    res.render('error');
+        Recipe.findByIdAndRemove( req.params.recipeId )
+            .then( data => {
+                req.flash('success', 'Recipe successfully deleted.')
+                res.redirect('/recipes');
+            })
+            .catch( err => {
+                console.error(err.message);
+                res.redirect('/error');
+            });
 });
 
 module.exports = router;

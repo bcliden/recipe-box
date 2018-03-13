@@ -33,8 +33,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use(flash());
 app.use(function(req, res, next){
     res.locals.user = req.user;
-    // res.locals.error = req.flash("error");
-    // res.locals.success = req.flash("success");
     next();
 });
 
