@@ -29,6 +29,7 @@
     </header>
     <main class="container container-body">
 
+    <%# use .shift() here to consume flash messages as they are read %>
     <% while( message = flash.shift() ){ %>
         <div class="card flash flash-<%= message.type %>">
             <%= message.message %>

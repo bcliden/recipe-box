@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../models');
 const Recipe = db.Recipe;
 const helpers = require('../helpers');
+const passport = require('passport');
 
 // hacky way to make DELETE request with the SHOW route <a> tag
 router.use('/:recipeId', ( req, res, next ) => {
@@ -10,7 +11,6 @@ router.use('/:recipeId', ( req, res, next ) => {
         req.method = 'DELETE';
         req.url = req.path;
     }
-    console.log('hey!');
     next();
 });
 
@@ -30,19 +30,23 @@ router.get('/', (req, res) => {
 
 // CREATE ROUTE
 
-router.post('/', (req, res) => {
-    Recipe.create( helpers.trimReqBody(req.body) )
-        .then( () => {
-            req.flash('success', 'Recipe added')
-            res.redirect('/recipes');
-        })
-        .catch( err => console.error(err) );
+router.post('/', 
+    helpers.isLoggedIn,
+    (req, res) => {
+        Recipe.create( helpers.trimReqBody(req.body) )
+            .then( () => {
+                req.flash('success', 'Recipe added')
+                res.redirect('/recipes');
+            })
+            .catch( err => console.error(err) );
 });
 
 // NEW ROUTE
 
-router.get('/new', (req, res) => {
-    res.render('new', {});
+router.get('/new',
+    helpers.isLoggedIn,
+    (req, res) => {
+        res.render('new', {});
 });
 
 // SHOW ROUTE
@@ -54,21 +58,23 @@ router.get('/:recipeId', (req, res) => {
         })
         .catch( err => {
             console.error(err.message);
-            res.render('error');
+            res.status(404).render('error');
         });
 });
 
 // EDIT ROUTE
 
-router.get('/:recipeId/edit', (req, res) => {
-    Recipe.findById( req.params.recipeId )
-        .then( foundRecipe => {
-            res.render('edit', { recipe: foundRecipe });
-        })
-        .catch( err => {
-            console.error(err.message);
-            res.render('error');
-        });
+router.get('/:recipeId/edit', 
+    helpers.isLoggedIn,
+    function (req, res) {
+        Recipe.findById( req.params.recipeId )
+            .then( foundRecipe => {
+                res.render('edit', { recipe: foundRecipe });
+            })
+            .catch( err => {
+                console.error(err.message);
+                res.render('error');
+            });
 });
 
 // UPDATE ROUTE
@@ -87,7 +93,9 @@ router.put('/:recipeId', (req, res) => {
 
 // DESTROY ROUTE
 
-router.delete('/:recipeId', (req, res) => {
+router.delete('/:recipeId',
+    helpers.isLoggedIn,
+    (req, res) => {
     Recipe.findByIdAndRemove( req.params.recipeId )
         .then( data => {
             req.flash('success', 'Recipe successfully deleted.')
