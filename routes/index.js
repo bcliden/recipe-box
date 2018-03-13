@@ -22,13 +22,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', function(req, res){
-    res.render('login', { user: req.user });
+    res.render('login', {});
 });
 
  router.post('/login',
     passport.authenticate('local', {
         successRedirect: '/recipes',
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        successFlash: true,
+        failureFlash: true,
     }),
     function(req, res) {
         res.redirect('/recipes');

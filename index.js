@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const ejs = require('ejs');
 const methodOverride = require('method-override');
+const flash = require('flash')
 const indexRoutes = require('./routes/index');
 const recipeRoutes = require('./routes/recipes');
 const passport = require('passport');
@@ -17,14 +18,25 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
+// PASSPORT CONFIG
 app.use(passport.initialize());
 app.use(passport.session());
 
-// PASSPORT CONFIG
 const User = require('./models/index').User;
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// FLASH CONFIG (must be after session middleware)
+
+app.use(flash());
+app.use(function(req, res, next){
+    res.locals.user = req.user;
+    // res.locals.error = req.flash("error");
+    // res.locals.success = req.flash("success");
+    next();
+});
 
 // ROUTING
 app.use('/', indexRoutes);

@@ -4,12 +4,23 @@ const db = require('../models');
 const Recipe = db.Recipe;
 const helpers = require('../helpers');
 
+// hacky way to make DELETE request with the SHOW route <a> tag
+router.use('/:recipeId', ( req, res, next ) => {
+    if ( req.query._method == 'DELETE' ) {
+        req.method = 'DELETE';
+        req.url = req.path;
+    }
+    console.log('hey!');
+    next();
+});
+
+
 // INDEX ROUTE
 
 router.get('/', (req, res) => {
     Recipe.find({})
         .then( foundRecipes => {
-            res.render('index', { recipes: foundRecipes, user: req.user });
+            res.render('index', { recipes: foundRecipes });
         })
         .catch( err => {
             console.error(err.message);
@@ -21,14 +32,17 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     Recipe.create( helpers.trimReqBody(req.body) )
-        .then( () => res.redirect('/recipes') )
+        .then( () => {
+            req.flash('success', 'Recipe added')
+            res.redirect('/recipes');
+        })
         .catch( err => console.error(err) );
 });
 
 // NEW ROUTE
 
 router.get('/new', (req, res) => {
-    res.render('new', { user: req.user });
+    res.render('new', {});
 });
 
 // SHOW ROUTE
@@ -36,7 +50,7 @@ router.get('/new', (req, res) => {
 router.get('/:recipeId', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
-            res.render('show', { recipe: foundRecipe, user: req.user });
+            res.render('show', { recipe: foundRecipe });
         })
         .catch( err => {
             console.error(err.message);
@@ -49,7 +63,7 @@ router.get('/:recipeId', (req, res) => {
 router.get('/:recipeId/edit', (req, res) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
-            res.render('edit', { recipe: foundRecipe, user: req.user });
+            res.render('edit', { recipe: foundRecipe });
         })
         .catch( err => {
             console.error(err.message);
@@ -72,20 +86,10 @@ router.put('/:recipeId', (req, res) => {
 
 // DESTROY ROUTE
 
-
-// hacky way to make DELETE request with the SHOW route <a> tag
-router.use('/:recipeId', ( req, res, next ) => {
-    if ( req.query._method == 'DELETE' ) {
-        req.method = 'DELETE';
-        req.url = req.path;
-    }
-    next();
-});
-
 router.delete('/:recipeId', (req, res) => {
     Recipe.findByIdAndRemove( req.params.recipeId )
         .then( data => {
-            console.log(data);
+            req.flash('success', 'Recipe successfully deleted.')
             res.redirect('/recipes');
         })
         .catch( err => {

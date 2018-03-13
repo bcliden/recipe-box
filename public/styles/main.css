@@ -9,6 +9,8 @@
     --main-bg-color: #FFFFFF;
 
     --topbar-border: 3px solid#B71C1C;
+    --err-flash-color: #E57373;
+    --success-flash-color: #C5E1A5;
 
     --btn-pad-color: #64B5F6;
     --btn-font-color: #FAFAFA;
@@ -339,6 +341,17 @@ main {
 
 .author {
     font-style: italic;
+}
+
+.flash {
+}
+
+.flash-error {
+    background: var(--err-flash-color);
+}
+
+.flash-success {
+    background: var(--success-flash-color);
 }
 
 @media screen and (min-width: 800px) {
