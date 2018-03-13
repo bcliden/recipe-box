@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
         if (err) {
             return res.render('register', { account : account });
         }
-
         passport.authenticate('local')(req, res, function () {
             res.redirect('/recipes');
         });
@@ -40,7 +39,7 @@ router.get('/login', function(req, res){
 router.get('/logout', function(req, res){
     req.logout();
     req.flash('success', 'You have been logged out.')
-    res.redirect('/recipes');
+    res.redirect('back');
 });
 
 module.exports = router;
