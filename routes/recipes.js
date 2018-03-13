@@ -76,6 +76,7 @@ router.get('/:recipeId/edit', (req, res) => {
 router.put('/:recipeId', (req, res) => {
     Recipe.findByIdAndUpdate( req.params.recipeId, helpers.trimReqBody(req.body) , { new: true })
         .then( updatedRecipe => {
+            res.flash('success', 'Your edit has been saved.');
             res.render('show', { recipe: updatedRecipe });
         })
         .catch( err => {

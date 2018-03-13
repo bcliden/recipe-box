@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const passport = require('passport');
 const User = require('../models').User;
@@ -29,7 +30,7 @@ router.get('/login', function(req, res){
     passport.authenticate('local', {
         successRedirect: '/recipes',
         failureRedirect: '/login',
-        successFlash: true,
+        successFlash: `Logged in successfully.`,
         failureFlash: true,
     }),
     function(req, res) {
