@@ -36,7 +36,6 @@ router.post('/',
         let newRecipe = new Recipe( trimmedBody );
         newRecipe.validate(function(err){
             if(err){
-                console.error(err.message);
                 req.flash('error', err.message);
                 res.render('new', { recipe: req.body });
             } else {
