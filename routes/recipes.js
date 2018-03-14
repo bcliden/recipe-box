@@ -31,17 +31,16 @@ router.get('/', (req, res) => {
 
 router.post('/', 
     helpers.isLoggedIn,
-    helpers.isNotEmpty,
     (req, res) => {
-        let trimmedBody = trimReqBody(req.body);
+        let trimmedBody = helpers.trimReqBody(req.body);
         Recipe.create( trimmedBody )
             .then( () => {
                 req.flash('success', 'Recipe added')
                 res.redirect('/recipes');
             })
             .catch( err => {
-                console.error(err.message);
-                res.render('error');
+                console.error(err);
+                res.render('error', {error: err, message: err.message});
             });
     });
 

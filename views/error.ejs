@@ -4,6 +4,12 @@
         <p class="card-title">error</p>
         <h2 class="title">Oops...</h2>
         <p class="desc">Something went wrong.</p>
+        <% if(error){ %>
+            <p><%= error %></p>
+        <% } %>
+        <% if(message){ %>
+            <p><%= message %></p>
+        <% } %>
         <hr class="show-hr">
         <a href="javascript:history.back()">< Back</a>
     </div>

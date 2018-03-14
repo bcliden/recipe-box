@@ -13,24 +13,15 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 };
 
-function incomplete(document) {
-    for(let item in document) {
-        if(Array.isArray(document[item]) || typeof(document[item]) === Object){
-            return incomplete(document[item])
-        } else if(document[item].trim().length <= 0){
-            return true;
-        }
-    }
-    return false;
-}
+// function incomplete(document) {
+//     for(let item in document) {
+//         if(Array.isArray(document[item]) || typeof(document[item]) === Object){
+//             return incomplete(document[item])
+//         } else if(document[item].trim().length <= 0){
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
-function isNotEmpty(req, res, next) {
-    if(incomplete(req.body)){
-        req.flash('error', 'Please fill at least one of each field.');
-        res.redirect('back');
-    }
-    next();
-}
-
-
-  module.exports = { trimReqBody, isLoggedIn, isNotEmpty };
+module.exports = { trimReqBody, isLoggedIn };
