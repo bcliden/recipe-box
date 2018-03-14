@@ -33,15 +33,24 @@ router.post('/',
     helpers.isLoggedIn,
     (req, res) => {
         let trimmedBody = helpers.trimReqBody(req.body);
-        Recipe.create( trimmedBody )
-            .then( () => {
-                req.flash('success', 'Recipe added')
-                res.redirect('/recipes');
-            })
-            .catch( err => {
-                console.error(err);
-                res.render('error', {error: err, message: err.message});
-            });
+        let newRecipe = new Recipe( trimmedBody );
+        newRecipe.validate(function(err){
+            if(err){
+                console.error(err.message);
+                req.flash('error', err.message);
+                res.render('new', { recipe: req.body });
+            } else {
+                Recipe.save()
+                    .then( () => {
+                        req.flash('success', 'Recipe added')
+                        res.redirect('/recipes');
+                    })
+                    .catch( err => {
+                        console.error(err);
+                        res.render('error', {error: err, message: err.message});
+                    });
+            }
+        })
     });
 
 // NEW ROUTE
