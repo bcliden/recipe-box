@@ -31,6 +31,7 @@ router.get('/', (req, res) => {
 
 router.post('/', 
     helpers.isLoggedIn,
+    helpers.isNotEmpty,
     (req, res) => {
         let trimmedBody = trimReqBody(req.body);
         Recipe.create( trimmedBody )

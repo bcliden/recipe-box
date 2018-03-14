@@ -393,6 +393,7 @@ form [name="description"] {
 form [type="submit"] {
     float: right;
     margin: .5rem;
+    cursor: pointer;
 }
 
 .more-ingredients, .more-steps {
