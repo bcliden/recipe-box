@@ -3,22 +3,41 @@
     <div class="card new big">
         <p class="card-title">New recipe</p>
         <form class="clearfix" action="/recipes" method="POST">
-            <label>Title: <input type="text" name="title" placeholder="" pattern=".*\S+.*" title="please enter a title" required></label>
-            <label>Author: <input type="text" name="author" placeholder="" pattern=".*\S+.*" title="please enter an author" required></label>
-            <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required></textarea></label>
+            <label>Title: <input type="text" name="title" placeholder="" pattern=".*\S+.*" title="please enter a title" required value="<%= recipe.title %>"></label>
+            <label>Author: <input type="text" name="author" placeholder="" pattern=".*\S+.*" title="please enter an author" required value="<%= recipe.author %>"></label>
+            <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required><%= recipe.description %></textarea></label>
             <div class="clearfix">
                 <label class="ingredients">Ingredients:
-                    <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" required placeholder="Type ingredients here">
-                    <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" placeholder="for example:">
-                    <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" placeholder="1 tbsp Eye of Newt">
-
+                    <% if(recipe.ingredients){ %>
+                        <% recipe.ingredients.forEach( ingredient => { %>
+                            <% if (ingredient[0]) { %>
+                                <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" required value="<%= ingredient %>">
+                            <% } else { %>
+                                <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" value="<%= ingredient %>">                            
+                            <% } %>
+                        <% }); %>
+                    <% } else { %>
+                        <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" required placeholder="Type ingredients here">
+                        <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" placeholder="for example:">
+                        <input type="text" name="ingredients[]" pattern=".*\S+.*" title="please enter an ingredient" placeholder="1 tbsp Eye of Newt">    
+                    <% } %>
                 </label>
                 <a class="more-ingredients">+ more ingredients</a>
             </div>
             <div class="clearfix">
                 <label class="steps">Steps:
-                        <div><textarea name="steps[]" cols="10" rows="5" required placeholder="Type steps here"></textarea></div>
-                        <div><textarea name="steps[]" cols="10" rows="5" placeholder="Preheat oven to 'stun'"></textarea></div>
+                <% if(recipe.steps){ %>
+                    <% recipe.steps.forEach( step => { %>
+                        <% if (step[0]) { %>
+                            <div><textarea name="steps[]" cols="10" rows="5" required><%= step %></textarea></div>
+                        <% } else { %>
+                            <div><textarea name="steps[]" cols="10" rows="5"><%= step %></textarea></div>
+                        <% } %>
+                    <% }); %>
+                <% } else { %>
+                    <div><textarea name="steps[]" cols="10" rows="5" required placeholder="Type steps here"></textarea></div>
+                    <div><textarea name="steps[]" cols="10" rows="5" placeholder="Preheat oven to 'stun'"></textarea></div>
+                <% } %>
                 </label>
                 <a class="more-steps">+ more ingredients</a>
             </div>

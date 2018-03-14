@@ -39,7 +39,7 @@ router.post('/',
                 req.flash('error', err.message);
                 res.render('new', { recipe: req.body });
             } else {
-                Recipe.save()
+                newRecipe.save()
                     .then( () => {
                         req.flash('success', 'Recipe added')
                         res.redirect('/recipes');
