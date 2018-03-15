@@ -26,6 +26,7 @@ const recipeSchema = new Schema({
     },
     steps: {
         type: [String],
+        required: true,
         validate: {
             validator: notEmptyArray,
             message: 'Steps cannot be blank.'

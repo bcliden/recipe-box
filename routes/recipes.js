@@ -90,24 +90,32 @@ router.get('/:recipeId/edit',
 
 // UPDATE ROUTE
 
-router.put('/:recipeId', (req, res) => {
-    let trimmedBody = helpers.trimReqBody( req.body );
-    Recipe.findByIdAndUpdate(
-        req.params.recipeId,
-        trimmedBody,
-        { 
-            new: true,
-            runValidators: true
-         })
-        .then( updatedRecipe => {
-            res.flash('success', 'Your edit has been saved.');
-            res.render('show', { recipe: updatedRecipe });
-        })
-        .catch( err => {
-            console.error(err.message);
-            res.render('error', { error: err, message: err.message });
-        });
-});
+router.put('/:recipeId',
+    helpers.isLoggedIn,
+    (req, res) => {
+        let trimmedBody = helpers.trimReqBody( req.body );
+        Recipe.findByIdAndUpdate(
+            req.params.recipeId,
+            trimmedBody,
+            { 
+                new: true,
+                runValidators: true
+            })
+            .then( updatedRecipe => {
+                res.flash('success', 'Your edit has been saved.');
+                res.render('show', { recipe: updatedRecipe });
+            })
+            .catch( err => {
+                if(err.name === 'ValidationError'){
+                    req.flash('error', err.message);
+                    res.redirect(`/recipes/${req.path}/edit`);
+                } else {
+                    console.error(err.message);
+                    res.render('error', { error: err, message: err.message });
+                }
+            });
+    }
+);
 
 // DESTROY ROUTE
 

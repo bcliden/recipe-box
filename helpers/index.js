@@ -1,7 +1,21 @@
+function trimArray( array ){
+    let filteredArray = array.filter( item => {
+        return item.trim().length > 0;
+    });
+    let trimmedArray = filteredArray.map( item => {
+        return item.trim();
+    })
+    if( trimmedArray.length > 0 ){
+        return trimmedArray;
+    } else {
+        return null;
+    };
+}
+
 function trimReqBody( body ) {
     let { title, author, description, ingredients, steps } = body;
-    ingredients = ingredients.filter(recipe => recipe.trim().length > 0);
-    steps = steps.filter(step => step.trim().length > 0);
+    ingredients = trimArray(ingredients);
+    steps = trimArray(steps);
     return { title, author, description, ingredients, steps };
 };
 
