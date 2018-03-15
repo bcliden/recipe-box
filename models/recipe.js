@@ -4,43 +4,36 @@ const Schema = mongoose.Schema;
 const recipeSchema = new Schema({
     title: {
         type: String,
-        validate: {
-            validator: notEmpty,
-            message: 'Title cannot be blank.'
-        }
+        required: true,
     },
-    author: String,
+    author: {
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
-        validate: {
-            validator: notEmpty,
-            message: 'Description cannot be blank.'
-        }
+        required: true,
+    
     },
     ingredients: {
         type: [String],
-        validate: {
-            validator: notEmptyArray,
-            message: 'Ingredients cannot be blank.'
-        },
+        required: true,
     },
     steps: {
         type: [String],
         required: true,
-        validate: {
-            validator: notEmptyArray,
-            message: 'Steps cannot be blank.'
-        },
     },
 });
 
-function notEmpty(value) {
-    return value.trim().length > 0;
-}
+// VALIDATION FNs obsolete thanks to required
 
-function notEmptyArray(array) {
-    return array.every(item => item.trim().length > 0);
-}
+// function notEmpty(value) {
+//     return value.trim().length > 0;
+// }
+
+// function notEmptyArray(array) {
+//     return array.every(item => item.trim().length > 0);
+// }
 
 const Recipe = mongoose.model('recipe', recipeSchema);
 
