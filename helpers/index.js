@@ -1,12 +1,13 @@
 function trimArray( array ){
-    let filteredArray = array.filter( item => {
-        return item.trim().length > 0;
-    });
-    let trimmedArray = filteredArray.map( item => {
-        return item.trim();
-    })
-    if( trimmedArray.length > 0 ){
-        return trimmedArray;
+    let filteredArray = array
+        .filter( item => {
+            return item.trim().length > 0;
+        })
+        .map( item => {
+            return item.trim();
+        })
+    if( filteredArray.length > 0 ){
+        return filteredArray;
     } else {
         return null;
     };
@@ -14,9 +15,13 @@ function trimArray( array ){
 
 function trimReqBody( body ) {
     let { title, author, description, ingredients, steps } = body;
-    ingredients = trimArray(ingredients);
-    steps = trimArray(steps);
-    return { title, author, description, ingredients, steps };
+    return { 
+        title: title.trim(), 
+        author: author.trim(), 
+        description: description.trim(), 
+        ingredients: trimArray(ingredients), 
+        steps: trimArray(steps),
+    };
 };
 
 function isLoggedIn(req, res, next){
