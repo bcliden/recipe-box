@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const ejs = require('ejs');
 const methodOverride = require('method-override');
-const flash = require('flash')
+const flash = require('flash');
+const logger = require('morgan');
 const indexRoutes = require('./routes/index');
 const recipeRoutes = require('./routes/recipes');
 const passport = require('passport');
@@ -12,6 +13,7 @@ const LocalStrategy = require('passport-local').Strategy;
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(logger('dev'));
 app.use(methodOverride('_method'));
 app.use(require('express-session')({
     secret: 'Secret passphrase here',
