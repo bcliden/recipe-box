@@ -14,10 +14,9 @@ function trimArray( array ){
 }
 
 function trimReqBody( body ) {
-    let { title, author, description, ingredients, steps } = body;
+    let { title, description, ingredients, steps } = body;
     return { 
         title: title.trim(), 
-        author: author.trim(), 
         description: description.trim(), 
         ingredients: trimArray(ingredients), 
         steps: trimArray(steps),

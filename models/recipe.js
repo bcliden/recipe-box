@@ -23,6 +23,10 @@ const recipeSchema = new Schema({
         type: [String],
         required: true,
     },
+    date: {
+        type: Date,
+        default: Date.now,
+    }
 });
 
 // VALIDATION FNs obsolete thanks to required

@@ -17,7 +17,7 @@ router.use('/:recipeId', ( req, res, next ) => {
 // INDEX ROUTE
 
 router.get('/', (req, res) => {
-    Recipe.find({})
+    Recipe.find({}).sort({date: -1})
         .then( foundRecipes => {
             res.render('index', { recipes: foundRecipes });
         })
@@ -33,6 +33,7 @@ router.post('/',
     helpers.isLoggedIn,
     (req, res) => {
         let trimmedBody = helpers.trimReqBody(req.body);
+        trimmedBody.author = req.user.username;
         let newRecipe = new Recipe( trimmedBody );
         newRecipe.validate(function(err){
             if(err){
@@ -57,7 +58,7 @@ router.post('/',
 router.get('/new',
     helpers.isLoggedIn,
     (req, res) => {
-        res.render('new', {recipe: {}});
+        res.render('new', {recipe: null});
 });
 
 // SHOW ROUTE

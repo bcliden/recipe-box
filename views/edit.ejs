@@ -4,7 +4,6 @@
         <p class="card-title">edit recipe</p>
         <form class="clearfix" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
             <label>Title: <input type="text" name="title" placeholder="" pattern=".*\S+.*" title="please enter a title" required value="<%= recipe.title %>"></label>
-            <label>Author: <input type="text" name="author" placeholder="" pattern=".*\S+.*" title="please enter an author" required value="<%= recipe.author %>"></label>
             <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required><%= recipe.description %></textarea></label>
             <div class="clearfix">
                 <label class="ingredients">Ingredients:

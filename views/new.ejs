@@ -5,11 +5,9 @@
         <form class="clearfix" action="/recipes" method="POST">
             <% if(recipe){ %>
                 <label>Title: <input type="text" name="title" placeholder="" pattern=".*\S+.*" title="please enter a title" required autofocus value="<%= recipe.title %>"></label>
-                <label>Author: <input type="text" name="author" placeholder="" pattern=".*\S+.*" title="please enter an author" required value="<%= recipe.author %>"></label>
                 <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required><%= recipe.description %></textarea></label>
             <% } else { %>
                 <label>Title: <input type="text" name="title" placeholder="" pattern=".*\S+.*" title="please enter a title" required autofocus value=""></label>
-                <label>Author: <input type="text" name="author" placeholder="" pattern=".*\S+.*" title="please enter an author" required value=""></label>
                 <label>Description:<textarea name="description" cols="10" rows="3" placeholder="" required></textarea></label>
             <% } %>
             <div class="clearfix">

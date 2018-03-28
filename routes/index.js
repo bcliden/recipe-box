@@ -50,7 +50,7 @@ router.get('/login', function(req, res){
 router.get('/logout', function(req, res){
     req.logout();
     req.flash('success', 'You have been logged out.')
-    res.redirect('back');
+    res.redirect('/recipes');
 });
 
 module.exports = router;
