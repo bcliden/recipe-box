@@ -13,6 +13,7 @@ if (ingredientsBtn) {
         elem.setAttribute('type', 'text');
         elem.setAttribute('name', 'ingredients[]');
         ingredients.appendChild(elem);
+        ingredients.lastChild.focus();
     });
 };
 
@@ -22,5 +23,6 @@ if (stepsBtn) {
         let elem = document.createElement('div');
         elem.innerHTML = `<textarea name="steps[]" cols="10" rows="5"></textarea>`;
         steps.appendChild(elem);
+        steps.lastChild.lastChild.focus();
     });
 };
