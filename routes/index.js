@@ -11,13 +11,24 @@ router.get('/', (req, res) => {
  // AUTH ROUTES
 
  router.post('/register', function(req, res) {
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
+    console.log('we hit the register route');
+    let newUser = new User({ username: req.body.username });
+    User.register( newUser, req.body.password, function(err, account) {
         if (err) {
-            return res.render('register', { account : account });
+            req.flash('error', err.message);
+            res.redirect('login');
+        } else {
+            req.login(account, function(err){
+                if (err) {
+                    req.flash('error', err.message);
+                    res.redirect('login');
+                } else {
+                    req.flash('success','Logged in successfully. Welcome to The Recipe Box!');
+                    res.redirect('/recipes');
+                }
+            })
         }
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/recipes');
-        });
+
     });
 });
 
@@ -33,6 +44,7 @@ router.get('/login', function(req, res){
         failureFlash: true,
     }),
     function(req, res) {
+        console.log('this never activates');
         res.redirect('/recipes');
 });
 
