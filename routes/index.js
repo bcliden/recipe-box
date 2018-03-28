@@ -44,7 +44,6 @@ router.get('/login', function(req, res){
         failureFlash: true,
     }),
     function(req, res) {
-        console.log('this never activates');
         res.redirect('/recipes');
 });
 

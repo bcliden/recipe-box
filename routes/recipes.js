@@ -57,7 +57,7 @@ router.post('/',
 router.get('/new',
     helpers.isLoggedIn,
     (req, res) => {
-        res.render('new', {});
+        res.render('new', {recipe: {}});
 });
 
 // SHOW ROUTE

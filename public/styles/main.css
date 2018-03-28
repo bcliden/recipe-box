@@ -94,6 +94,12 @@ ul, ol {
     padding: 0 0 0 1rem;
 }
 
+pre {
+    white-space: pre-wrap;
+    border-left: 1px solid black;
+    padding-left: 1rem;
+}
+
 .clearfix:after {
     content: "";
     display: table;
