@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const uri = 'mongodb://localhost/recipe-box';
 
 mongoose.Promise = global.Promise;
-mongoose.set('debug', true);
+// mongoose.set('debug', true);
 
-mongoose.connect(uri)
+mongoose.connect(uri);
 
 mongoose.connection
     .once('open', () => console.log('DB connected successfully to:', uri))
