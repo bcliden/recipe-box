@@ -17,23 +17,33 @@ router.use('/:recipeId', ( req, res, next ) => {
 // INDEX ROUTE
 
 router.get('/', (req, res) => {
-    let size = Number(req.query.size) || 10;
-    let page = Number(req.query.page) || 0;
+    debugger;
+    let size = parseInt(req.query.size || 10);
+    let page = parseInt(req.query.page || 0);
     let entries = page * size;
 
     let count, range, back, forward, last;
-    Recipe.count({}, (err, c) => {
+    Recipe.count({})
+    .then( (c) => {
         count = c;
-    }).then( () => {
         range = `${page*size+1} - ${page*size+size} of ${count}`;
         last = Math.round(count/size);
         if( page-1 >= 0 ){ back = page-1 } else { back = 0 };
         if( page+1 <= last ){ forward = page+1 } else { forward = last};
-    }).then( () => {
+    })
+    .then( () => {
         Recipe.find({})
             .skip(entries)
             .limit(size)
             .then( foundRecipes => {
+                console.log({ 
+                    page: {
+                        range,
+                        forward,
+                        back,
+                        last,
+                    }
+                })
                 res.render('index', 
                     { 
                         recipes: foundRecipes,
@@ -50,7 +60,8 @@ router.get('/', (req, res) => {
                 console.error(err.message);
                 res.render('error');
             });
-    });
+    })
+    .catch( err => console.error(err));
 });
 
 // CREATE ROUTE

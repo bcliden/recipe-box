@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
  // AUTH ROUTES
 
  router.post('/register', function(req, res) {
-    console.log('we hit the register route');
     let newUser = new User({ username: req.body.username });
     User.register( newUser, req.body.password, function(err, account) {
         if (err) {
