@@ -457,6 +457,11 @@ form hr {
     margin: 20px 0;
 }
 
+fieldset {
+    padding: 10px 0 0 0;
+    border: none;
+}
+
 @media screen and (min-width: 800px) {
     form [type="submit"] {
         margin-top: 20px;
