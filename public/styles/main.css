@@ -4,7 +4,6 @@
 
 :root {
     font-size: 14px;
-
     --main-font-color: #212121;
     --main-bg-color: #FFFFFF;
 
@@ -279,7 +278,7 @@ main {
 }
 
 
-/*  SHOW ROUTE STYLES */
+/*  INDEX ROUTE STYLES */
 
 .card {
     margin-bottom: 20px;
@@ -367,6 +366,29 @@ main {
 
 .flash-success {
     background: var(--success-flash-color);
+}
+
+.card.page {
+    background: var(--card-li-odd-color);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 3% 5%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page * {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+.page .arrow {
+    font-size: 1.2rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -550,4 +572,9 @@ footer {
 footer a {
     font-weight: bold;
     font-style: underline;
+    color: var(--footer-link-color);
+}
+
+footer .container {
+    text-align: center;
 }

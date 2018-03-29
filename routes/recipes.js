@@ -17,14 +17,40 @@ router.use('/:recipeId', ( req, res, next ) => {
 // INDEX ROUTE
 
 router.get('/', (req, res) => {
-    Recipe.find({}).sort({date: -1})
-        .then( foundRecipes => {
-            res.render('index', { recipes: foundRecipes });
-        })
-        .catch( err => {
-            console.error(err.message);
-            res.render('error');
-        });
+    let size = Number(req.query.size) || 10;
+    let page = Number(req.query.page) || 0;
+    let entries = page * size;
+
+    let count, range, back, forward, last;
+    Recipe.count({}, (err, c) => {
+        count = c;
+    }).then( () => {
+        range = `${page*size+1} - ${page*size+size} of ${count}`;
+        last = Math.round(count/size);
+        if( page-1 >= 0 ){ back = page-1 } else { back = 0 };
+        if( page+1 <= last ){ forward = page+1 } else { forward = last};
+    }).then( () => {
+        Recipe.find({})
+            .skip(entries)
+            .limit(size)
+            .then( foundRecipes => {
+                res.render('index', 
+                    { 
+                        recipes: foundRecipes,
+                        page: {
+                            range,
+                            forward,
+                            back,
+                            last,
+                        }
+                    }
+                );
+            })
+            .catch( err => {
+                console.error(err.message);
+                res.render('error');
+            });
+    });
 });
 
 // CREATE ROUTE

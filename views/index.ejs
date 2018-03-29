@@ -20,5 +20,12 @@
             </li>
         <% }); %>
     </ul>
+    <div class="card page">
+        <a href="/recipes?page=0" class="first"><<</a>
+        <a href="/recipes?page=<%= page.back %>" class="back"><</a>
+        <p class=""><%=page.range%></p>
+        <a href="/recipes?page=<%= page.forward %>" class="forward">></a>
+        <a href="/recipes?page=<%= page.last %>" class="last">>></a>
+    </div>
 
 <% include partials/footer %>
