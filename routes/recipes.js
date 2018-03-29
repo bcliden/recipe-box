@@ -22,28 +22,21 @@ router.get('/', (req, res) => {
     let page = parseInt(req.query.page || 0);
     let entries = page * size;
 
-    let count, range, back, forward, last;
+    let count, range, max, back, forward, last;
     Recipe.count({})
     .then( (c) => {
         count = c;
-        range = `${page*size+1} - ${page*size+size} of ${count}`;
-        last = Math.round(count/size);
-        if( page-1 >= 0 ){ back = page-1 } else { back = 0 };
-        if( page+1 <= last ){ forward = page+1 } else { forward = last};
+        (page*size+size > count) ? max = count : max = page*size+size
+        range = `${page*size+1} - ${max} of ${count}`;
+        last = Math.floor((count-1)/size);
+        (page-1 >= 0) ? back = page-1 : back = 0;
+        (page+1 <= last) ? forward = page+1 : forward = last;
     })
     .then( () => {
         Recipe.find({})
             .skip(entries)
             .limit(size)
             .then( foundRecipes => {
-                console.log({ 
-                    page: {
-                        range,
-                        forward,
-                        back,
-                        last,
-                    }
-                })
                 res.render('index', 
                     { 
                         recipes: foundRecipes,
