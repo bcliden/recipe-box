@@ -409,6 +409,10 @@ main {
     border: var(--new-edit-border);
 }
 
+.new.card, .edit.card {
+    padding-bottom: 2rem;
+}
+
 form input,textarea {
     width: calc(100% - 12px);
     margin-bottom: 10px;
@@ -423,9 +427,17 @@ form [name="description"] {
 }
 
 form [type="submit"] {
-    float: right;
+    /* float: right;
     margin: .5rem;
-    cursor: pointer;
+    cursor: pointer; */
+}
+
+.new .btn, .edit .btn{
+    margin: 10% 5% 0;
+}
+
+.btn.cancel {
+    background: var(--btn-delete-pad-color);
 }
 
 .more-ingredients, .more-steps {
@@ -462,10 +474,18 @@ fieldset {
     border: none;
 }
 
-@media screen and (min-width: 800px) {
-    form [type="submit"] {
-        margin-top: 20px;
+@media screen and (min-width: 426px) {
+    .new .btn, .edit .btn{
+        margin: 0;
     }
+    .new .buttons, .edit .buttons {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 800px) {
+
 }
 
 /*  SHOW ROUTE STYLES */
@@ -503,8 +523,6 @@ ul.show-list {
 
 .show .btn {
     margin: 10% 5% 0;
-    display: block;
-    float: none;
 }
 
 .edit {
@@ -517,9 +535,16 @@ ul.show-list {
     /* margin-left: 5%; */
 }
 
+.buttons {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 @media screen and (min-width: 426px) {
+    .buttons {
+        flex-direction: row-reverse;
+    }
     .show .btn {
-        float: right;
         margin: 0 0 0 5%;
     }
 }
@@ -537,10 +562,6 @@ ul.show-list {
     }
     .show-hr {
         margin: 2rem auto;
-    }
-    .show .btn {
-        float: right;
-        margin: 0 0 0 5%;
     }
 }
 
