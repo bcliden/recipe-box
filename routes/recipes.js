@@ -100,7 +100,7 @@ router.get('/:recipeId', (req, res) => {
         })
         .catch( err => {
             console.error(err.message);
-            res.status(404).render('/error')
+            res.render('error', { error: err, message: err.message });
         });
 });
 
@@ -115,7 +115,7 @@ router.get('/:recipeId/edit',
             })
             .catch( err => {
                 console.error(err.message);
-                res.render('error');
+                res.render('error', { error: err, message: err.message });
             });
 });
 
@@ -163,5 +163,11 @@ router.delete('/:recipeId',
                 res.redirect('/error');
             });
 });
+
+// SEARCH ROUTE
+
+router.get('/search', (req, res) => {
+    res.send('hi search route')
+})
 
 module.exports = router;

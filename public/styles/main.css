@@ -581,8 +581,25 @@ ul.show-list {
 
 /* ERROR STYLES */
 
-.error a {
-    color: var(--more-field-color);
+.error {
+    padding-bottom: 2rem;
+}
+
+.error .buttons {
+    justify-content: space-between;
+}
+
+.error .btn {
+    margin: 10% 5% 0;
+}
+
+@media screen and (min-width: 426px) {
+    .error .buttons {
+        flex-direction: row;
+    }
+    .error .btn {
+        margin: 0 0 0 5%;
+    }
 }
 
 /*  FOOTER STYLES */
