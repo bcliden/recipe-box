@@ -30,7 +30,7 @@ function seedRecipeAsync() {
             description: faker.company.bs(),
             author: `${faker.name.firstName()} ${faker.name.lastName()}`,
             ingredients: [
-                faker.lorem.word(),
+                faker.commerce.color(),
                 faker.commerce.productMaterial(),
                 faker.commerce.productName(),
             ],
