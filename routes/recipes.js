@@ -20,6 +20,8 @@ router.get('/', (req, res, next) => {
     let size = parseInt(req.query.size || 10);
     let page = parseInt(req.query.page || 0);
     let entries = page * size;
+    let sort = 'date';
+    let sortDir = 'desc';
 
     let count, range, max, back, forward, last;
     Recipe.count({})
@@ -33,6 +35,7 @@ router.get('/', (req, res, next) => {
     })
     .then( () => {
         Recipe.find({})
+            .sort({ [sort]: [sortDir] })
             .skip(entries)
             .limit(size)
             .then( foundRecipes => {
