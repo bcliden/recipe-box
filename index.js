@@ -78,7 +78,7 @@ app.use(function(err, req, res, next) {
 });
 
 // SERVER CONFIG
-const port = process.env.port || 7575;
+const port = process.env.PORT || 7575;
 app.listen(port, () => {
     console.log('App \'the Recipe Box\' is running on port:', port)
 });
