@@ -117,7 +117,6 @@ router.get('/:recipeId', (req, res, next) => {
     Recipe.findById( req.params.recipeId )
         .populate('author')
         .then( foundRecipe => {
-            console.log(foundRecipe);
             res.render('show', { recipe: foundRecipe });
         })
         .catch( err => {

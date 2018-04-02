@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const uri = process.env.DBURI || 'mongodb://localhost/recipe-box';
 
 mongoose.Promise = global.Promise;
-mongoose.set('debug', true);
+
+if(process.env.NODE_ENV != 'production'){
+    mongoose.set('debug', true);
+}
 
 mongoose.connect(uri);
 
