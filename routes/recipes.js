@@ -16,8 +16,7 @@ router.use('/:recipeId', ( req, res, next ) => {
 
 // INDEX ROUTE
 
-router.get('/', (req, res) => {
-    debugger;
+router.get('/', (req, res, next) => {
     let size = parseInt(req.query.size || 10);
     let page = parseInt(req.query.page || 0);
     let entries = page * size;
@@ -50,18 +49,19 @@ router.get('/', (req, res) => {
                 );
             })
             .catch( err => {
-                console.error(err.message);
-                res.render('error');
+                next(err);
             });
     })
-    .catch( err => console.error(err));
+    .catch( err => {
+        next(err);
+    });
 });
 
 // CREATE ROUTE
 
 router.post('/', 
     helpers.isLoggedIn,
-    (req, res) => {
+    (req, res, next) => {
         let trimmedBody = helpers.trimReqBody(req.body);
         trimmedBody.author = req.user.username;
         let newRecipe = new Recipe( trimmedBody );
@@ -76,8 +76,7 @@ router.post('/',
                         res.redirect('/recipes');
                     })
                     .catch( err => {
-                        console.error(err);
-                        res.render('error', {error: err, message: err.message});
+                        next(err);
                     });
             }
         })
@@ -93,14 +92,13 @@ router.get('/new',
 
 // SHOW ROUTE
 
-router.get('/:recipeId', (req, res) => {
+router.get('/:recipeId', (req, res, next) => {
     Recipe.findById( req.params.recipeId )
         .then( foundRecipe => {
             res.render('show', { recipe: foundRecipe });
         })
         .catch( err => {
-            console.error(err.message);
-            res.render('error', { error: err, message: err.message });
+            next(err);
         });
 });
 
@@ -108,14 +106,13 @@ router.get('/:recipeId', (req, res) => {
 
 router.get('/:recipeId/edit', 
     helpers.isLoggedIn,
-    (req, res) => {
+    (req, res, next) => {
         Recipe.findById( req.params.recipeId )
             .then( foundRecipe => {
                 res.render('edit', { recipe: foundRecipe });
             })
             .catch( err => {
-                console.error(err.message);
-                res.render('error', { error: err, message: err.message });
+                next(err);
             });
 });
 
@@ -123,7 +120,7 @@ router.get('/:recipeId/edit',
 
 router.put('/:recipeId',
     helpers.isLoggedIn,
-    (req, res) => {
+    (req, res, next) => {
         let trimmedBody = helpers.trimReqBody( req.body );
         Recipe.findByIdAndUpdate(
             req.params.recipeId,
@@ -141,8 +138,7 @@ router.put('/:recipeId',
                     req.flash('error', err.message);
                     res.redirect(`/recipes/${req.path}/edit`);
                 } else {
-                    console.error(err.message);
-                    res.render('error', { error: err, message: err.message });
+                    next(err);
                 }
             });
     }
@@ -152,22 +148,15 @@ router.put('/:recipeId',
 
 router.delete('/:recipeId',
     helpers.isLoggedIn,
-    (req, res) => {
+    (req, res, err) => {
         Recipe.findByIdAndRemove( req.params.recipeId )
             .then( data => {
                 req.flash('success', 'Recipe successfully deleted.')
                 res.redirect('/recipes');
             })
             .catch( err => {
-                console.error(err.message);
-                res.redirect('/error');
+                next(err);
             });
 });
-
-// SEARCH ROUTE
-
-router.get('/search', (req, res) => {
-    res.send('hi search route')
-})
 
 module.exports = router;
