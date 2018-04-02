@@ -131,7 +131,6 @@ router.get('/:recipeId/edit',
     (req, res, next) => {
         Recipe.findById( req.params.recipeId )
             .then( foundRecipe => {
-                console.log(foundRecipe);
                 res.render('edit', { recipe: foundRecipe });
             })
             .catch( err => {
