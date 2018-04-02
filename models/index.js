@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = 'mongodb://localhost/recipe-box';
+const uri = process.env.DBURI || 'mongodb://localhost/recipe-box';
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);

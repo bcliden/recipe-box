@@ -477,9 +477,12 @@ form [name="description"] {
     padding: 10px 0 5px;
 }
 
-form hr {
-    color: #9E9E9E;
-    margin: 20px 0;
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 1rem auto;
 }
 
 fieldset {
@@ -495,7 +498,9 @@ fieldset {
 }
 
 @media screen and (min-width: 800px) {
-
+    hr {
+        margin: 2rem auto;
+    }
 }
 
 /*  SHOW ROUTE STYLES */
@@ -520,14 +525,6 @@ ul.show-list {
 
 .show li {
     margin-top: 10px;
-}
-
-.show-hr {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    margin: 1rem auto;
 }
 
 .show .btn {
@@ -568,9 +565,6 @@ ul.show-list {
     }
     .show-list {
         line-height: 2rem;
-    }
-    .show-hr {
-        margin: 2rem auto;
     }
 }
 
