@@ -6,14 +6,17 @@ const recipeSchema = new Schema({
         type: String,
         required: true,
     },
+    // author: {
+    //     type: String,
+    //     required: true,
+    // },
     author: {
-        type: String,
-        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'user',
     },
     description: {
         type: String,
         required: true,
-    
     },
     ingredients: {
         type: [String],

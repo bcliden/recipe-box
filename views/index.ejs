@@ -4,7 +4,7 @@
         <a href="/recipes/<%= recipes[0]._id %>">
             <p class="card-title">Featured recipe</p>
             <h2 class="title"><%= recipes[0].title %></h2>
-            <p class="author">by: <%= recipes[0].author %></p>
+            <p class="author">by: <%= recipes[0].author.username %></p>
             <p class="desc"><%= recipes[0].description %></p>
         </a>
     </div>
@@ -14,7 +14,7 @@
             <li class="list-item">
                 <a href="/recipes/<%= recipe._id %>">
                     <h3 class="title"><%= recipe.title %></h3>
-                    <p class="author">by: <%= recipe.author %></p>
+                    <p class="author">by: <%= recipe.author.username %></p>
                     <p class="desc"><%= recipe.description %></p>
                 </a>
             </li>

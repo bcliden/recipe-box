@@ -38,7 +38,23 @@ router.get('/', (req, res, next) => {
             .sort({ [sort]: [sortDir] })
             .skip(entries)
             .limit(size)
+            .populate('author')
             .then( foundRecipes => {
+                if( foundRecipes.length < 1){
+                    res.render('index', {
+                        recipes: [{
+                            title: 'Welcome to the Recipe Box!',
+                            author: "You!",
+                            description: 'To get started, please create an account and add a new recipe above!'
+                        }],
+                        page: {
+                            range: '',
+                            forward: 0,
+                            back: 0,
+                            last: 0,
+                        },
+                    });
+                };
                 res.render('index', 
                     { 
                         recipes: foundRecipes,
@@ -65,8 +81,10 @@ router.get('/', (req, res, next) => {
 router.post('/', 
     helpers.isLoggedIn,
     (req, res, next) => {
+        // trim spaces and blank fields
         let trimmedBody = helpers.trimReqBody(req.body);
-        trimmedBody.author = req.user.username;
+        trimmedBody.author = req.user._id;
+
         let newRecipe = new Recipe( trimmedBody );
         newRecipe.validate(function(err){
             if(err){
@@ -97,7 +115,9 @@ router.get('/new',
 
 router.get('/:recipeId', (req, res, next) => {
     Recipe.findById( req.params.recipeId )
+        .populate('author')
         .then( foundRecipe => {
+            console.log(foundRecipe);
             res.render('show', { recipe: foundRecipe });
         })
         .catch( err => {
@@ -112,6 +132,7 @@ router.get('/:recipeId/edit',
     (req, res, next) => {
         Recipe.findById( req.params.recipeId )
             .then( foundRecipe => {
+                console.log(foundRecipe);
                 res.render('edit', { recipe: foundRecipe });
             })
             .catch( err => {
@@ -132,6 +153,7 @@ router.put('/:recipeId',
                 new: true,
                 runValidators: true
             })
+            .populate('author')
             .then( updatedRecipe => {
                 res.flash('success', 'Your edit has been saved.');
                 res.render('show', { recipe: updatedRecipe });

@@ -3,7 +3,7 @@
 <div class="show card big clearfix">
     <p class="card-title">Recipe</p>
     <h2 class="title"><%= recipe.title %></h2>
-    <p class="author">by: <%= recipe.author %></p>
+    <p class="author">by: <%= recipe.author.username %></p>
     <p class="desc"><%= recipe.description %></p>
     <hr class="show-hr">
     <ul class="show-list show-ingredients">
@@ -19,7 +19,7 @@
         <% }); %>
     </ol>
     <% if(user){ %>
-        <% if(user.username == recipe.author || user.username == 'admin'){ %>
+        <% if(user.username == recipe.author.username || user.username == 'admin'){ %>
             <hr class="show-hr">
             <div class="buttons">
                 <a href="/recipes/<%= recipe._id %>?_method=DELETE" class="btn delete">Delete</a>
