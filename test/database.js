@@ -16,11 +16,12 @@ describe('works with users', () => {
             })
             .catch( err => console.warn(err));
     });
-    it('is sufficiently cleared', (done) => {
+    it('is sufficiently cleared between tests', (done) => {
         User.find({})
             .then( users => {
-                console.log(users);
+                assert( users.length === 0 );
                 done();
-            });
-    })
+            })
+            .catch( err => console.warn( err ));
+    });
 })
