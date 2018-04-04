@@ -16,5 +16,10 @@ beforeEach( done => {
 });
 
 after( () => {
-    mongoose.connection.close()
+    const { users, recipes } = mongoose.connection.collections;
+    users.drop( () => {
+        recipes.drop( () => {
+            mongoose.connection.close()
+        })
+    })
 })
