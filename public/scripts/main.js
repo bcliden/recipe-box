@@ -26,3 +26,7 @@ if (stepsBtn) {
         steps.lastChild.lastChild.focus();
     });
 };
+
+function js_load() {
+    document.body.style.visibility = 'visible';
+}
