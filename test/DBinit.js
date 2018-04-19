@@ -3,7 +3,7 @@ const uri = 'mongodb://localhost/recipe-box-test';
 
 mongoose.connect(uri)
 mongoose.connection
-    .once('open', () => console.log('DB connected at', uri))
+    .once('open', () => console.log('test DB connected at', uri))
     .on('error', (err) => console.error('error: ', err));
 
 beforeEach( done => {

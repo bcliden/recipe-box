@@ -3,6 +3,7 @@ const app = express();
 const router = express.Router();
 const passport = require('passport');
 const User = require('../models').User;
+const AuthController = require('../controllers/auth_controller');
 
 router.get('/', (req, res) => {
     res.redirect('/recipes');
@@ -10,26 +11,7 @@ router.get('/', (req, res) => {
 
  // AUTH ROUTES
 
- router.post('/register', function(req, res) {
-    let newUser = new User({ username: req.body.username });
-    User.register( newUser, req.body.password, function(err, account) {
-        if (err) {
-            req.flash('error', err.message);
-            res.redirect('login');
-        } else {
-            req.login(account, function(err){
-                if (err) {
-                    req.flash('error', err.message);
-                    res.redirect('login');
-                } else {
-                    req.flash('success','Logged in successfully. Welcome to The Recipe Box!');
-                    res.redirect('/recipes');
-                }
-            })
-        }
-
-    });
-});
+router.post('/register', AuthController.register);
 
 router.get('/login', function(req, res){
     res.render('login', {});
