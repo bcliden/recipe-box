@@ -5,8 +5,8 @@ const app = require('../../app');
 
 const User = mongoose.model('user');
 
-describe('Authentication Controllers', () => {
-    it('Registers a user', (done) => {
+describe('Authentication Controllers', function() {
+    it('Registers a user', function(done) {
         User.count().then( count => {
             request(app)
                 .post('/register')
@@ -21,7 +21,7 @@ describe('Authentication Controllers', () => {
                 })
         }).catch( err => console.error(err))
     });
-    it('Will not register an incomplete request', (done) => {
+    it('Will not register an incomplete request', function(done) {
         User.count().then( count => {
             request(app)
                 .post('/register')
