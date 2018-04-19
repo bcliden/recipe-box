@@ -66,4 +66,19 @@ describe('Authentication Controllers', function() {
                     .expect('Location', '/login', done)
             })
     });
+    it('logs out a user', function(done) {
+        User.register({username: 'test'}, '123456')
+        .then( () => {
+            return request(app)
+                .post('/login')
+                .send({username: 'test', password: '123456'})
+                .expect(302)
+        })
+        .then(() => {
+            request(app)
+                .get('/logout')
+                .expect(302)
+                .expect('Location', '/recipes', done)
+        })
+    })
 })
