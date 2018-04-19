@@ -1,8 +1,8 @@
 const assert = require('assert');
-const User = require('../models/user');
-const Recipe = require('../models/recipe');
 const mongoose = require('mongoose');
 
+const User = mongoose.model('user');
+const Recipe = mongoose.model('recipe');
 
 describe('User', function(){
     it('is sufficiently cleared between tests', function(done){
