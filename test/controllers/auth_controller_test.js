@@ -6,7 +6,7 @@ const app = require('../../app');
 const User = mongoose.model('user');
 
 describe('Authentication Controllers', () => {
-    it.only('Registers a user', (done) => {
+    it('Registers a user', (done) => {
         User.count().then( count => {
             request(app)
                 .post('/register')
@@ -14,11 +14,30 @@ describe('Authentication Controllers', () => {
                 .end( (err, res) => {
                     if(err){ return done(err) };
                     User.count().then( newCount => {
-                        console.log(count, newCount);
                         assert( count + 1 === newCount);
                         done();
                     })
                 })
         }).catch( err => console.error(err))
-    })
+    });
+    it('Logs in a user', function(done) {
+        User.register({username: 'test'}, '123456')
+            .then( () => {
+                request(app)
+                    .post('/login')
+                    .send({username: 'test', password: '123456'})
+                    .expect(302)
+                    .expect('Location', '/recipes', done)
+            })
+    });
+    it('Does not log in a bad password', function(done) {
+        User.register({username: 'test'}, '123456')
+            .then( () => {
+                request(app)
+                    .post('/login')
+                    .send({username: 'test', password: 'badpwd'})
+                    .expect(302)
+                    .expect('Location', '/login', done)
+            })
+    });
 })

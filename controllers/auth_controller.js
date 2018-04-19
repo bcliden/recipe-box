@@ -16,10 +16,15 @@ module.exports = {
                         res.redirect(500, 'login');
                     } else {
                         req.flash('success','Logged in successfully. Welcome to The Recipe Box!');
-                        res.redirect(200, '/recipes');
+                        res.redirect('/recipes');
                     }
                 })
             }
         })
+    },
+    logout(req, res){
+        req.logout();
+        req.flash('success', 'You have been logged out.')
+        res.redirect('/recipes');
     },
 }

@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 // mongoose debug on if dev or test
 if(process.env.NODE_ENV !== 'production'){
-    mongoose.set('debug', true);
+    // mongoose.set('debug', true);
 }
 
 // connect if not in test ENV

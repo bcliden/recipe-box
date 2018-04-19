@@ -28,10 +28,6 @@ router.get('/login', function(req, res){
         res.redirect('/recipes');
 });
 
-router.get('/logout', function(req, res){
-    req.logout();
-    req.flash('success', 'You have been logged out.')
-    res.redirect('/recipes');
-});
+router.get('/logout', AuthController.logout);
 
 module.exports = router;

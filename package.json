@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "test": "nodemon -x 'mocha --exit --recursive -R spec'"
+    "test": "nodemon -x 'NODE_ENV=test mocha --exit --recursive -R min -t 5000'"
   },
   "author": "Benjamin Liden",
   "license": "ISC",
@@ -17,7 +17,6 @@
     "method-override": "^2.3.10",
     "mongoose": "^5.0.7",
     "nodemon": "^1.15.1",
-    "p": "^0.2.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0",
