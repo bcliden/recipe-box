@@ -6,15 +6,6 @@ const app = require('../../app');
 const Recipe = mongoose.model('recipe');
 const User = mongoose.model('user');
 
-function registerAndLogin(username, password){
-    return User.register({username: username}, password)
-        .then( () => {
-            request(app)
-                .post('/login')
-                .send({username: 'test', password: '123456'})
-        })
-}
-
 describe('Recipe Controllers', function(){
     describe('GET request to /recipes', function(){
         it('GET request to \'/\' redirects to /recipes', function(done){
@@ -32,7 +23,6 @@ describe('Recipe Controllers', function(){
         });
     });
     describe('POST request to /recipes', function(){
-
         it('must be logged in to create a recipe', function(done){
             request(app)
                 .post('/recipes')
@@ -56,6 +46,6 @@ describe('Recipe Controllers', function(){
         });
         // more research needed for supertest + session.
         // db tests should work fine.
-        it('creates a recipe')
+        it('creates a recipe');
     });
 })

@@ -77,7 +77,7 @@ module.exports = {
                 newRecipe.save()
                     .then( () => {
                         req.flash('success', 'Recipe added')
-                        res.redirect('/recipes');
+                        res.redirect(201, '/recipes');
                     })
                     .catch( err => {
                         next(err);
